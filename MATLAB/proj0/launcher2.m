@@ -2,14 +2,14 @@ clear;
 global cache_size cacheline_size app_mem num_cl num_memaccess n num_set cl;
 global lru lru_stamp x MAX hit2;
 
-cache_size = 2 * 2^10;
-cacheline_size = 2;
-app_mem = 200 * 2^10; % should be: 100 * cache_size
+cache_size = 512;
+cacheline_size = 1;
+app_mem = 50 * 2^10; % should be: 100 * cache_size
 num_cl = cache_size / cacheline_size;
 num_memaccess = app_mem / cacheline_size; % shold be: 100 * num_cl
 set_size = 16;
 num_set = num_cl / set_size;
-n = 800;
+n = 5000;
 hit2 = 0;
 % sets = 1 : num : set; % sets represents all set number;
 cl = zeros(1, num_cl); % cl stores the data of cacheline;

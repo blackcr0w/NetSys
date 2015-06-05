@@ -36,10 +36,7 @@ n = 5000;
 % TODO3: reducing the app_mem and num_memaccess, making the resulets not
 % useless;
 
-% TODO4: thinking a way to generating the next random number very fast 
-% now: every time, have to look at the seed and generate every pair is slow
-% because i'm using the "seed" thing
-
+% TODO4: thinking generating the next random number very fast 
 s1 = zeros(1, n); % si is the access of app i, init to all-zero;
 s2 = zeros(1, n);
 rand_temp = [-1 -1]; % rand_temp is the memory access of app1 and app2 in this loop

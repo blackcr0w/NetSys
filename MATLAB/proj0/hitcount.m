@@ -26,3 +26,13 @@ hit2 = [1287
 MAX = [1 2 ]
 hit = [14 14 14 14(MAX = 20) ]
 hit2 = [15 15 15]
+
+
+
+% new hit count: 
+% using the evenly distributed access pattern: rand_gen2
+n = [1000 5000]
+hit1 = [14 102]
+hit2 = [19 ]
+
+
