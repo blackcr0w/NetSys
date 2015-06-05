@@ -13,7 +13,7 @@ set_size = 16; % this is a 16-way set assiciated, every set has 16 cache lines
 num_set = num_cl / set_size; % total set number
 hit  = 0;
 % n: each application will access the memory for millions of times;
-n = 40000;
+n = 60000;
 
 % sets = 1 : num : set; % sets represents all set number;
 cl = zeros(1, num_cl); % cl stores the data of all cachelines;
@@ -42,6 +42,11 @@ lru_stamp = -1 * lru_stamp;
 % because i'm using the "seed" thing
 % I HAVE TO MAKE THE LOOP NUMBER >> THE POSSIBLE NUMBER OF MEMORY THAT A
 % APP CAN ACCESS TO
+
+% TODO5: cache isolation do not affect the hit rate,
+% I should think about cases of distributio that the soft isolation works
+% well and when it works bad;
+
 
 s1 = zeros(1, n); % si is the access of app i, init to all-zero;
 s2 = zeros(1, n);
