@@ -49,8 +49,8 @@ hit1 = 102
 % set_size = 16; % this is a 16-way set assiciated, every set has 16 cache lines
 n = 2e4;
 possible app_access = 5120;
-MAX = 1;
-hit = 3991;
+MAX = [5 10];
+hit = [1653 3991];
 
 
 

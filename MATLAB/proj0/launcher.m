@@ -17,7 +17,7 @@ hit  = 0;
 cl = zeros(1, num_cl); % cl stores the data of all cachelines;
 x = ones(1, num_cl); % x keeps track of the status of all cachelines;
 x = -1 * x; % the original x is all -1, meaning all cacheline are empty;
-% MAX = 10; % MAX is the parameter for the isolation algorithm;
+MAX = 15; % MAX is the parameter for the isolation algorithm;
 
 lru = 1;
 lru_stamp = ones(1, num_cl); % lru_stamp keeps track of least-used time of all cacheline;
@@ -54,7 +54,7 @@ for i = 1 : n
     replace_1(s2(i));
 end
 
-mybeep;
+% mybeep;
 
 % the next is drawing the Probability density function and cumulative
 % distribution function of current accessing pattern
