@@ -4,18 +4,18 @@ global lru lru_stamp x MAX hit2;
 
 cache_size = 512;
 cacheline_size = 1;
-app_mem = 50 * 2^10; % should be: 100 * cache_size
+app_mem = 5 * 2^10; % should be: 100 * cache_size
 num_cl = cache_size / cacheline_size;
 num_memaccess = app_mem / cacheline_size; % shold be: 100 * num_cl
 set_size = 16;
 num_set = num_cl / set_size;
-n = 7500;
+n = 20000;
 hit2 = 0;
 % sets = 1 : num : set; % sets represents all set number;
 cl = zeros(1, num_cl); % cl stores the data of cacheline;
 x = ones(1, num_cl); % x keeps track of the status of all cacheline;
 x = -1 * x; % the original x is all -1, meaning all cacheline are empty;
-% MAX = 1; % MAX is the parameter for the isolation algorithm;
+MAX = 50; % MAX is the parameter for the isolation algorithm;
 
 lru = 1;
 lru_stamp = ones(1, num_cl); % lru_stamp keeps track of least-used time of all cacheline;

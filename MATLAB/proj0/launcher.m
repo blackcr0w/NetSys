@@ -12,19 +12,20 @@ num_memaccess = app_mem / cacheline_size; % shold be: 100 * num_cl
 set_size = 16; % this is a 16-way set assiciated, every set has 16 cache lines
 num_set = num_cl / set_size; % total set number
 hit  = 0;
+% n: each application will access the memory for millions of times;
+n = 40000;
 
 % sets = 1 : num : set; % sets represents all set number;
 cl = zeros(1, num_cl); % cl stores the data of all cachelines;
 x = ones(1, num_cl); % x keeps track of the status of all cachelines;
 x = -1 * x; % the original x is all -1, meaning all cacheline are empty;
-MAX = 15; % MAX is the parameter for the isolation algorithm;
+MAX = 2; % MAX is the parameter for the isolation algorithm;
 
 lru = 1;
 lru_stamp = ones(1, num_cl); % lru_stamp keeps track of least-used time of all cacheline;
 lru_stamp = -1 * lru_stamp;
 
-% n: each application will access the memory for millions of times;
-n = 20000;
+
 % TODO1: making a large outside loop, very n in a big setp-in, (50 or 100) and
 % get series fo hit.
 
@@ -54,7 +55,7 @@ for i = 1 : n
     replace_1(s2(i));
 end
 
-% mybeep;
+mybeep;
 
 % the next is drawing the Probability density function and cumulative
 % distribution function of current accessing pattern
