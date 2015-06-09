@@ -13,7 +13,7 @@ set_size = 16; % this is a 16-way set assiciated, every set has 16 cache lines
 num_set = num_cl / set_size; % total set number
 hit  = 0;
 % n: each application will access the memory for millions of times;
-n = 60000;
+n = 20000;
 
 % sets = 1 : num : set; % sets represents all set number;
 cl = zeros(1, num_cl); % cl stores the data of all cachelines;
