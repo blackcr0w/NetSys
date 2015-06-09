@@ -1,5 +1,6 @@
 function Y = rand_gen2
 global num_memaccess;
+% this is the case of uniform distribution memory access;
 
 prob = ones(1, num_memaccess / 2);
 prob = prob * (2 / num_memaccess);

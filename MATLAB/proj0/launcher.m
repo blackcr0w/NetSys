@@ -19,7 +19,7 @@ n = 20000;
 cl = zeros(1, num_cl); % cl stores the data of all cachelines;
 x = ones(1, num_cl); % x keeps track of the status of all cachelines;
 x = -1 * x; % the original x is all -1, meaning all cacheline are empty;
-MAX = 2; % MAX is the parameter for the isolation algorithm;
+MAX = 40; % MAX is the parameter for the isolation algorithm;
 
 lru = 1;
 lru_stamp = ones(1, num_cl); % lru_stamp keeps track of least-used time of all cacheline;
