@@ -10,8 +10,8 @@ prob1 = [prob11 prob12];
 
 prob2 = ones(1, num_cl * 0.5 + 1);
 prob2 = prob2 * (1 / (num_cl * 0.5 + 1));
-alphabet1 = (1 : 2 : 2 * (num_cl * 0.5 - 2));
-alphabet2 = (2 : 2 : 2 * (num_cl * 0.5 + 1));
+alphabet1 = (1 : 2 : num_memaccess);
+alphabet2 = (2 : 2 : num_memaccess);
 Y(1) = randsrc(1, 1, [alphabet1; prob1]);
-Y(2) = randsrc(1, 1, [alphabet2; prob2]);
+Y(2) = randsrc(1, 1, [alphabet2; prob]);
 % Q: App1 is always accessing odd cacheline, App2 is always accessing even
