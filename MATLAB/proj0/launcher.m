@@ -13,7 +13,7 @@ set_size = 16; % this is a 16-way set assiciated, every set has 16 cache lines
 num_set = num_cl / set_size; % total set number
 hit  = 0;
 % n: each application will access the memory for millions of times;
-n = 100000;
+n = 60000;
 
 % sets = 1 : num : set; % sets represents all set number;
 cl = zeros(1, num_cl); % cl stores the data of all cachelines;
@@ -27,12 +27,12 @@ lru_stamp = -1 * lru_stamp;
 
 
 % TODO1: making a large outside loop, very n in a big setp-in, (50 or 100) and
-% get series fo hit.
+% get series fo hit.-----not now
 
 % TODO: using the file operation to write the real-time hit-rate in
 % a file!!!!!!!
-% other solution: using Java or C, mixture coding
-% TODO2: using matalb OOP to simplify the code;
+% other solution: using Java or C, mixture coding----not now, better use
+% Python
 
 % TODO3: reducing the app_mem and num_memaccess, making the resulets not
 % useless;

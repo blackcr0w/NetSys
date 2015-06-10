@@ -86,5 +86,12 @@ hit = [199065, 199071]
 hitrate = 0.9953, 0.9954
 % MAX still does not affec the hit rate too much;
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% this is the hit rate of the rand_gen4, n = 20,000 %%%%%%%%%%%%%%
 
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% this is the hit rate of the rand_gen5, n = 20,000 %%%%%%%%%%%%%%
 
