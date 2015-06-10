@@ -27,15 +27,15 @@ lru_stamp = -1 * lru_stamp;
 
 
 % TODO1: making a large outside loop, very n in a big setp-in, (50 or 100) and
-% get series fo hit.-----not now
+% get series fo hit.---not now
 
 % TODO: using the file operation to write the real-time hit-rate in
 % a file!!!!!!!
-% other solution: using Java or C, mixture coding----not now, better use
+% other solution: using Java or C, mixture coding---not now, better use
 % Python
 
 % TODO3: reducing the app_mem and num_memaccess, making the resulets not
-% useless;
+% useless;--- done
 
 % TODO4: thinking a way to generating the next random number very fast 
 % now: every time, have to look at the seed and generate every pair is slow

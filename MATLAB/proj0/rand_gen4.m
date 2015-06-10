@@ -1,5 +1,8 @@
 function Y = rand_gen4
-% this is the case of a worse performanc access pattern, 
+% this is the case of a uncertain performanc access pattern, 
+% where app1 and 2 have just the #mem_access = #cache_lien 
+% this is the same as not cache isolation.
+% but because the #mem_access is too small, the hit rate is good;
 % app1 and app2 works like "round robin", which has num_memaccess = num_cl + 1;
 
 global num_cl;

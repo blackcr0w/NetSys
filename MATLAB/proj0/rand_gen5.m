@@ -1,7 +1,9 @@
 function Y = rand_gen5
-% this is the case of a worse performanc access pattern, 
+% this is the case of a uncertain performanc access pattern, 
 % TODO: compare the different hit rate for different access pattern, but
 % App1 and App2 are of the same access pattern;
+% the access pattern is uniform distribution, 
+% and the #mem_access = #cacheline + 1;
 
 global num_cl;
 

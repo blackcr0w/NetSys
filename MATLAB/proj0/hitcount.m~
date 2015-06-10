@@ -76,13 +76,28 @@ hitrate  =
 
 % n = 60,000:
 MAX [5, 30];
-hit = [119235, 119235, 199065];
+hit = [119235, 119235, ];
 hit2 = [119252, ];
-hitrate = [0.9936, 0.9953];
+hitrate = [0.9936, ];
 
 % n = 100,000:
-MAX = []
+MAX = [3, 30];
+hit = [199065, 199071]
+hitrate = 0.9953, 0.9954
+% MAX still does not affec the hit rate too much;
+
+% want to ger more
+
+% using the rand_gen, the access pattern of app1 and app2 are the same, but
+% the hit rate is good, about 82%, still confused.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% this is the hit rate of the rand_gen4, n = 60,000 %%%%%%%%%%%%%%
+hit = 119488;
+hitrate = 0.9957;
 
 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% this is the hit rate of the rand_gen5, n = 20,000 %%%%%%%%%%%%%%
 

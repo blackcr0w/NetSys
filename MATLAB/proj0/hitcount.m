@@ -86,9 +86,25 @@ hit = [199065, 199071]
 hitrate = 0.9953, 0.9954
 % MAX still does not affec the hit rate too much;
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% this is the hit rate of the rand_gen4, n = 20,000 %%%%%%%%%%%%%%
+% want to ger more cases?
+% making it larger num_memaccess
 
+
+% using the rand_gen, the access pattern of app1 and app2 are the same, but
+% the hit rate is good, about 82%, still confused.
+% n = 60,000
+% when the total #mem_access is doubed and other change:
+% the probability distribution: [0.7, 0.2, uniforly to the rest]
+% hit = 109331,  n = 60000, hitrate = 0.9111;
+% test 3: distribution: [0.7, 0.25, 0.05]
+% hit = 114624, n = 60000, hitrate = 0.9552;
+% next TODO with rand_gen: test the diff distribution parameter for better
+% performance;
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% this is the hit rate of the rand_gen4, n = 60,000 %%%%%%%%%%%%%%
+hit = 119488;
+hitrate = 0.9957;
 
 
 
