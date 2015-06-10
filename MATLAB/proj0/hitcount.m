@@ -89,7 +89,6 @@ hitrate = 0.9953, 0.9954
 % want to ger more cases?
 % making it larger num_memaccess
 
-
 % using the rand_gen, the access pattern of app1 and app2 are the same, but
 % the hit rate is good, about 82%, still confused.
 % n = 60,000
@@ -98,6 +97,9 @@ hitrate = 0.9953, 0.9954
 % hit = 109331,  n = 60000, hitrate = 0.9111;
 % test 3: distribution: [0.7, 0.25, 0.05]
 % hit = 114624, n = 60000, hitrate = 0.9552;
+% this is still almost the same as no-soft isolation case: hit2 = 114292
+% but there is improvement in hit rate: improved 0.0028%;
+
 % next TODO with rand_gen: test the diff distribution parameter for better
 % performance;
 
@@ -110,4 +112,17 @@ hitrate = 0.9957;
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % this is the hit rate of the rand_gen5, n = 20,000 %%%%%%%%%%%%%%
+
+
+
+% now, it seems that rand_gen2, the all uniform distributio case is worse
+% and the rand_gen and rand_gen3 are better cases;
+
+% Now, (1)working on rand_gen3 (2)working on the variation fo MAX and the
+% effect of MAX on the hit rate.
+% Always remember that the improvement of soft-isolation can only be seen
+% through comparing them with the hard-isolation case, compare the hit
+% rate.
+
+
 
