@@ -2,7 +2,7 @@ function Y = rand_gen
 % this is the case of the MY access pattern, a race condition happens;
 
 global num_memaccess;
-prob1 = [0.45 0.45]; prob2 = ones(1, num_memaccess / 2 - 2); 
+prob1 = [0.75 0.15]; prob2 = ones(1, num_memaccess / 2 - 2); 
 prob2 = prob2 * (0.1 / (num_memaccess / 2 - 2));
 prob = [prob1 prob2];
 alphabet = (1 : 2 : num_memaccess);

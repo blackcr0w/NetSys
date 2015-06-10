@@ -6,9 +6,8 @@
 % distribution function of current accessing pattern
 close all;
 global num_memaccess;
-figure, subplot(1,2,1),ecdf(s1);
+figure, ecdf(s1);
 title('cdf of app1');
-subplot(1,2,2), 
 figure, ecdf(s2);
 title('cdf of app2');
 
