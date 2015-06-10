@@ -7,7 +7,7 @@ global num_memaccess;
 % TODO: adjusting the probability distribution function to get the best hit
 % rate in this accessig pattern
 
-prob11 = [0.45 0.45]; prob12 = ones(1, num_memaccess - 2); 
+prob11 = [0.8 0.1]; prob12 = ones(1, num_memaccess - 2); 
 prob12 = prob12 * (0.1 / (num_memaccess - 2));
 prob1 = [prob11 prob12];
 

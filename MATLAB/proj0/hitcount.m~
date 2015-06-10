@@ -100,7 +100,7 @@ hitrate = 0.9953, 0.9954
 % this is still almost the same as no-soft isolation case: hit2 = 114292
 % but there is improvement in hit rate: improved 0.0028%;
 
-% next TODO with rand_gen: test the diff distribution parameter for better
+% TODO with rand_gen: test the diff distribution parameter for better
 % performance;
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -118,11 +118,52 @@ hitrate = 0.9957;
 % now, it seems that rand_gen2, the all uniform distributio case is worse
 % and the rand_gen and rand_gen3 are better cases;
 
-% Now, (1)working on rand_gen3 (2)working on the variation fo MAX and the
-% effect of M
-% Always remember that the improvement of soft-isolation can only be seen
-% through comparing them with the hard-isolation case, compare the hit
-% rate.
+% TODO: 
+% (1)working on rand_gen3 
+% first, in the current parameter, I want to see the improvement,
+% second, finding the best parameter for in rand_gen3;
+% the probility distribution:
+% [0.7, 0.2, uniformly]
+% n = 60,000, hit = 57346,  hitrate = 0.4779
+% n = 60,000, hit2 = 56990, hitraet = 0.4749
+% improved: 0.003
+
+% changing the probility distribution:
+% [0.5, 0.4, uniformly]
+% hit = 57345, hitrate = 0.4779, hit2 = 56668? hitrate2 = 0.4722,
+% improvement = 0.0057.
+
+% [0.8, 0.1, uniformly]
+% hit = 57345, hitrate = 0.4779, hit2 = 56989? hitrate2 = 0.4749,
+% improvement = 0.0030.
+
+% [0.45, 0.45, uniformly]
+% hit  = 57345, hitrate = 0.4779, hit2 = 56668, hitrate2 = 0.4722
+% improvement = 0.0057
+
+% (2)working on the variation fo MAX and the effect of MAX on the hit rate.
+% -----MAX does not affec the hit rate!!!
+
+%%%%%%%% JUN.10 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% 1. diff parameters and the rand_gen results
+% MAX = 10, n = 40.000,  
+
+% (1) pdf and cdf of rand_gen, then the the hitragte improvement when probability
+% change
+% (2)
+
+% [0.45, 0.45, uniformly]:
+hit = 72862; hitrate = 0.910775;
+hit2 = ; hitrate2 = 
+
+
+% [0.6, 0.3, uniformly]:
+
+% [0.75, 0.15, uniformly]:
+
+% [0.89, 0.01, uniformly]:
+
 
 
 

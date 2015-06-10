@@ -144,6 +144,36 @@ hitrate = 0.9957;
 % (2)working on the variation fo MAX and the effect of MAX on the hit rate.
 % -----MAX does not affec the hit rate!!!
 
+%%%%%%%% JUN.10 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% 1. diff parameters and the rand_gen results
+% MAX = 10, n = 40.000,  
+
+% (1) pdf and cdf of rand_gen, then the the hitragte improvement when probability
+% change
+% (2)
+
+% [0.45, 0.45, uniformly]:
+hit = 72862; hitrate = 0.910775;
+hit2 = 72456; hitrate2 = 0.9057;
+improvement = 0.0051;
+
+% [0.6, 0.3, uniformly]:
+
+% [0.75, 0.15, uniformly]:
+hit = 72862; hitrate = 0.910775;
+hit2 = 72456; hitrate2 = 0.9057;
+improvement = 0.0051;
+
+% [0.89, 0.01, uniformly]:
+
+% 2. diff parameter of rand_gen2
+% this is the worse case
+% cannot see much more
+
+
+
+% 3. diff parameters for rnd
 
 
 
