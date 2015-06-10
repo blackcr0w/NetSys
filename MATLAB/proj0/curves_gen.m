@@ -8,24 +8,28 @@ close all;
 global num_memaccess;
 figure, subplot(1,2,1),ecdf(s1);
 title('cdf of app1');
+
 s1min = min(s1);
 s1max = max(s1);
 xp = linspace(s1min, s1max, 20);
 f = ksdensity(s1,xp);
 subplot(1,2,2), plot(xp, f, '+');
+% axis([0 200 0 1]);
 title('pdf fo app1');
 
 figure, subplot(1,2,1), ecdf(s2);
+
 title('cdf of app2');
 s1min = min(s1);
 s1max = max(s1);
 xp = linspace(s1min, s1max, 20);
 f = ksdensity(s1,xp);
 subplot(1,2,2), plot(xp, f, '+');
-title('pdf fo app1');
 
-m1 = [0.45, 0.6, 0.75, 0.89];
-improved_hitrate = [0.0051, 0.0051, 0.0051 0.0024];
+title('pdf fo app2');
+
+m1 = [0.45, 0.5, 0.7, 0.8];
+improved_hitrate = [0.0057, 0.0057, 0.0057 0.0030];
 figure, plot(m1,improved_hitrate);
 xlabel ('probability of m1');
 ylabel ('improved overall hit rate');

@@ -53,7 +53,7 @@ rand_temp = [-1 -1]; % rand_temp is the memory access of app1 and app2 in this l
 rand('seed', 0);
 
 for i = 1 : n
-    rand_temp = rand_gen2;
+    rand_temp = rand_gen3;
     s1(i) = rand_temp(1);
     s2(i) = rand_temp(2);
     replace_1(s1(i));
