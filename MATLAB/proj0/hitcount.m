@@ -134,8 +134,12 @@ hitrate = 0.9957;
 % improvement = 0.0057.
 
 % [0.8, 0.1, uniformly]
-% hit = 57345, hitrate = 0.4779, hit2 = 56668? hitrate2 = 0.4722,
-% improvement = 0.0057.
+% hit = 57345, hitrate = 0.4779, hit2 = 56989? hitrate2 = 0.4749,
+% improvement = 0.0030.
+
+% [0.45, 0.45, uniformly]
+% hit  = 57345, hitrate = 0.4779, hit2 = 56668, hitrate2 = 0.4722
+% improvement = 0.0057
 
 % (2)working on the variation fo MAX and the effect of MAX on the hit rate.
 % -----MAX does not affec the hit rate!!!
