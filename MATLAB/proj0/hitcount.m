@@ -76,12 +76,15 @@ hitrate  =
 
 % n = 60,000:
 MAX [5, 30];
-hit = [119235, 119235, 199065];
+hit = [119235, 119235, ];
 hit2 = [119252, ];
-hitrate = [0.9936, 0.9953];
+hitrate = [0.9936, ];
 
 % n = 100,000:
-
+MAX = [3, 30];
+hit = [199065, 199071]
+hitrate = 0.9953, 0.9954
+% MAX still does not affec the hit rate too much;
 
 
 
