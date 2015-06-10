@@ -100,7 +100,7 @@ hitrate = 0.9953, 0.9954
 % this is still almost the same as no-soft isolation case: hit2 = 114292
 % but there is improvement in hit rate: improved 0.0028%;
 
-% next TODO with rand_gen: test the diff distribution parameter for better
+% TODO with rand_gen: test the diff distribution parameter for better
 % performance;
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -118,11 +118,16 @@ hitrate = 0.9957;
 % now, it seems that rand_gen2, the all uniform distributio case is worse
 % and the rand_gen and rand_gen3 are better cases;
 
-% Now, (1)working on rand_gen3 (2)working on the variation fo MAX and the
-% effect of MAX on the hit rate.
-% Always remember that the improvement of soft-isolation can only be seen
-% through comparing them with the hard-isolation case, compare the hit
-% rate.
+% TODO: 
+% (1)working on rand_gen3 
+% first, in the current parameter, I want to see the improvement,
+% second, finding the best parameter for in rand_gen3;
+% n = 60,000, hit = 57346,  hitrate = 0.4779
+
+
+% (2)working on the variation fo MAX and the effect of MAX on the hit rate.
+% -----MAX does not affec the hit rate!!!
+
 
 
 

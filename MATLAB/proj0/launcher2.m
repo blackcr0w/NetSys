@@ -29,7 +29,7 @@ s2 = zeros(1, n);
 rand_temp = [-1 -1];
 rand('seed', 0);
 for i = 1 : n
-    rand_temp = rand_gen;
+    rand_temp = rand_gen3;
     s1(i) = rand_temp(1);
     s2(i) = rand_temp(2);
     replace_2(s1(i));
