@@ -26,9 +26,11 @@ title('pdf fo app1');
 
 m1 = [0.45, 0.6, 0.75, 0.89];
 improved_hitrate = [0.0051, 0.0051, 0.0051 0.0024];
-firgure, plot()
+figure, plot(m1,improved_hitrate);
+xlabel ('probability of m1');
+ylabel ('improved overall hit rate');
 title('how hit rate improves when access pattern changes');
-axis([0 1 0 0.006]);
+axis([0.45 1 0 0.006]);
 
 
 

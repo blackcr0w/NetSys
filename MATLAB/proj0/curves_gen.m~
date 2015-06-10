@@ -26,9 +26,13 @@ title('pdf fo app1');
 
 m1 = [0.45, 0.6, 0.75, 0.89];
 improved_hitrate = [0.0051, 0.0051, 0.0051 0.0024];
-firgure, plot()
+firgure, plot(m1,improved_hitrate);
+xlabel ('MAX');
+ylabel ('hit rate');
 title('how hit rate improves when access pattern changes');
-axis([0, 0.006, ]);
+axis([0 1 0 0.006]);
+
+
 
 % prob1 = [0.7 0.1]; prob2 = ones(1, num_memaccess / 2 - 2); 
 % prob2 = prob2 * (0.2 / (num_memaccess / 2 - 2));

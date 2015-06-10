@@ -157,10 +157,9 @@ hitrate = 0.9957;
 hit = 72862; hitrate = 0.910775;
 hit2 = 72456; hitrate2 = 0.9057;
 improvement = 0.0051;
-
 % [0.6, 0.3, uniformly]:
 hit = 72862; hitrate = 0.910775;
-hit2 = 
+hit2 = 72456; hitrate2 = 0.9057;
 % [0.75, 0.15, uniformly]:
 hit = 72862; hitrate = 0.910775;
 hit2 = 72458; hitrate2 = 0.9057;
@@ -174,7 +173,9 @@ improved = 0.0024;
 % 2. diff parameter of rand_gen2
 % this is the worse case
 % cannot see much more
-
+hit = 3959; hitrate = 0.049485;
+hit2 = ; hitrate2 = ;
+improvement = ;
 
 
 % 3. diff parameters for rand_gen3
