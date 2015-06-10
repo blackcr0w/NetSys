@@ -51,6 +51,7 @@ s1 = zeros(1, n); % si is the access of app i, init to all-zero;
 s2 = zeros(1, n);
 rand_temp = [-1 -1]; % rand_temp is the memory access of app1 and app2 in this loop
 rand('seed', 0);
+
 for i = 1 : n
     rand_temp = rand_gen3;
     s1(i) = rand_temp(1);

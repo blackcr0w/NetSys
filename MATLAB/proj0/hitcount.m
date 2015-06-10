@@ -122,8 +122,20 @@ hitrate = 0.9957;
 % (1)working on rand_gen3 
 % first, in the current parameter, I want to see the improvement,
 % second, finding the best parameter for in rand_gen3;
+% the probility distribution:
+% [0.7, 0.2, uniformly]
 % n = 60,000, hit = 57346,  hitrate = 0.4779
+% n = 60,000, hit2 = 56990, hitraet = 0.4749
+% improved: 0.003
 
+% changing the probility distribution:
+% [0.5, 0.4, uniformly]
+% hit = 57345, hitrate = 0.4779, hit2 = 56668? hitrate2 = 0.4722,
+% improvement = 0.0057.
+
+% [0.8, 0.1, uniformly]
+% hit = 57345, hitrate = 0.4779, hit2 = 56668? hitrate2 = 0.4722,
+% improvement = 0.0057.
 
 % (2)working on the variation fo MAX and the effect of MAX on the hit rate.
 % -----MAX does not affec the hit rate!!!
