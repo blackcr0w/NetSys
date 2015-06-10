@@ -159,13 +159,17 @@ hit2 = 72456; hitrate2 = 0.9057;
 improvement = 0.0051;
 
 % [0.6, 0.3, uniformly]:
-
+hit = 72862; hitrate = 0.910775;
+hit2 = 
 % [0.75, 0.15, uniformly]:
 hit = 72862; hitrate = 0.910775;
-hit2 = 72456; hitrate2 = 0.9057;
+hit2 = 72458; hitrate2 = 0.9057;
 improvement = 0.0051;
 
 % [0.89, 0.01, uniformly]:
+hit = 72863, hitrate = 0.9108;
+hit2 = 72670, hitreat2 = 0.908375;
+improved = 0.0024;
 
 % 2. diff parameter of rand_gen2
 % this is the worse case
@@ -173,7 +177,10 @@ improvement = 0.0051;
 
 
 
-% 3. diff parameters for rnd
+% 3. diff parameters for rand_gen3
+% (1) pdf and cdf of rand_gen3, then the the hitragte improvement when probability
+% change
+% (2)
 
 
 
