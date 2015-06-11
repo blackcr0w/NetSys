@@ -172,7 +172,7 @@ improvement = 0.0051;
 hit = 72863, hitrate = 0.9108;
 hit2 = 72670, hitreat2 = 0.908375;
 improved = 0.0024;
-
+ma
 % 2. diff parameter of rand_gen2
 % this is the worse case
 % cannot see much more
