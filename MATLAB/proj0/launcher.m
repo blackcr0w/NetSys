@@ -13,7 +13,7 @@ set_size = 16; % this is a 16-way set assiciated, every set has 16 cache lines
 num_set = num_cl / set_size; % total set number
 hit  = 0;
 % n: each application will access the memory for millions of times;
-n = 40000;
+n = 30000;
 
 % sets = 1 : num : set; % sets represents all set number;
 cl = zeros(1, num_cl); % cl stores the data of all cachelines;
@@ -53,7 +53,7 @@ rand_temp = [-1 -1]; % rand_temp is the memory access of app1 and app2 in this l
 rand('seed', 0);
 
 for i = 1 : n
-    rand_temp = rand_gen3;
+    rand_temp = rand_gen6;
     s1(i) = rand_temp(1);
     s2(i) = rand_temp(2);
     replace_1(s1(i));

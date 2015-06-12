@@ -12,10 +12,9 @@ global num_cl;
 % prob1 = [prob11 prob12];
 
 prob1 = 1;
-num_app2cl = int64(num_cl * 0.9);
+num_app2cl = round(num_cl * 0.9);
 prob2 = ones(1, num_app2cl);
-format long;
-phi = sym('1 / num_app2cl');
+phi = 1 / num_app2cl;
 prob2 = prob2 * phi;
 
 alphabet1 = 1;
