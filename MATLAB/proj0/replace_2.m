@@ -1,4 +1,4 @@
-function replace_2(si)
+function replace_2(si) %%
 % using this function simiulating the case without soft isolation, only lru
 global num_set cl MAX lru_stamp lru x hit2;
 set_num = mod(si, num_set);
@@ -20,6 +20,7 @@ for i = base0 : base0 + 15
         lru_stamp(i) = lru;
         lru = lru + 1;
         return;
+    else continue;
     end
 end
 
@@ -32,6 +33,7 @@ for i = base0 : base0 + 15
         x(i) = MAX;
         %for j = (set_num + base) : (set_num + base + 8)
         return;
+    else continue;
     end
 end
 

@@ -3,6 +3,8 @@ clear;
 global cache_size cacheline_size app_mem num_cl num_memaccess n num_set cl;
 global lru lru_stamp x hit MAX;
 global s1 s2;
+global cnt1;
+cnt1 = 0;
 
 cache_size = 512; % set cache size = 512B;(2MB)
 cacheline_size = 1; % set cache line size = 1B;(64B)

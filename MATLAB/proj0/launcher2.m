@@ -2,6 +2,7 @@ clear;
 global cache_size cacheline_size app_mem num_cl num_memaccess n num_set cl;
 global lru lru_stamp x MAX hit2;
 
+
 cache_size = 512;
 cacheline_size = 1;
 app_mem = 5 * 2^10; % should be: 100 * cache_size
@@ -35,3 +36,5 @@ for i = 1 : n
     replace_2(s1(i));
     replace_2(s2(i));
 end 
+
+mybeep;
