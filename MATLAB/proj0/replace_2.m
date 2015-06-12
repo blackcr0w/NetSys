@@ -1,6 +1,7 @@
+
 function replace_2(si) %%
 % using this function simiulating the case without soft isolation, only lru
-global num_set cl MAX lru_stamp lru hit2;
+global num_set cl lru_stamp lru hit2;
 set_num = mod(si, num_set);
 set_num = int32(set_num);
 base0 = set_num * 16 + 1; % base0 si the starting base of the set
@@ -13,7 +14,7 @@ else
     base = 8;
 end
 % when hit happens?
-for i = base0 : base0 + 15
+for i = base0 + base : base0 + base + 7
     if cl(i) == si;
         hit2  = hit2 + 1;
 %         x(i) = MAX;
@@ -25,7 +26,7 @@ for i = base0 : base0 + 15
 end
 
 % when miss happens and empty cachelien exists:
-for i = base0 : base0 + 15
+for i = base0 + base : base0 + base + 7
     if cl(i) == 0
         cl(i) = si;
         lru_stamp(i) = lru;
