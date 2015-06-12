@@ -51,9 +51,6 @@ end
 % when miss happens, using LRU and hard-isolation
 ii = getLRU(base0, base);
 cl(ii) = si;
-lru_stamp(ii) = lru;
-lru = lru + 1;
-
 
 % for i = (set_num + base) : (set_num + base + 7)
 %     if i ~= ii
@@ -67,6 +64,9 @@ lru = lru + 1;
 %     x(i) = x(i) * 0.5;
 %     x(i) = int32(x(i));
 % end 
+
+lru_stamp(ii) = lru;
+lru = lru + 1;
 
 
 

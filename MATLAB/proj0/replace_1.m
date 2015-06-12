@@ -22,7 +22,7 @@ for i = base0 : base0 + 15
         lru_stamp(i) = lru;
         lru = lru + 1;
         return;
-    else continue;
+%     else continue;
     end
 end
 
@@ -35,7 +35,7 @@ for i = base0 : base0 + 15
         x(i) = MAX;
         %for j = (set_num + base) : (set_num + base + 8)
         return;
-    else continue;
+%     else continue;
     end
 end
 
@@ -48,7 +48,7 @@ for i = base0 : base0 + 15
         lru_stamp(i) = lru;
         lru = lru + 1;
         return;
-    else continue;
+%     else continue;
     end
 end
 
@@ -60,7 +60,7 @@ for i = (base0 + base) : (base0 + base + 7)
     if i ~= ii
         x(i) = x(i) - 1;
         x(i) = floor(x(i));
-    else continue;
+%     else continue;
     end 
 end
 

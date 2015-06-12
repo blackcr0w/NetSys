@@ -14,8 +14,8 @@ n = 30000;
 hit2 = 0;
 % sets = 1 : num : set; % sets represents all set number;
 cl = zeros(1, num_cl); % cl stores the data of cacheline;
-x = ones(1, num_cl); % x keeps track of the status of all cacheline;
-x = -1 * x; % the original x is all -1, meaning all cacheline are empty;
+% x = ones(1, num_cl); % x keeps track of the status of all cacheline;
+% x = -1 * x; % the original x is all -1, meaning all cacheline are empty;
 MAX = 10; % MAX is the parameter for the isolation algorithm;
 
 lru = 1;
