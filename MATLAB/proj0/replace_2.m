@@ -2,26 +2,26 @@
 function replace_2(si) %%
 % using this function simiulating the case without soft isolation, only lru
 global num_set cl lru_stamp lru hit2;
+global num_app1;
 set_num = mod(si, num_set);
-set_num = int32(set_num);
+% set_num = int32(set_num);
 base0 = set_num * 16 + 1; % base0 si the starting base of the set
 
 base = -1; % base is decided by which app is running, and used as base in repalacing
 % the accessing pattern ensures A1 will access odd, A2 will access even
-if (mod(si, 2))
-    base = 0;
-else
+if si > num_app1
     base = 8;
+else
+    base = 0;
 end
 % when hit happens?
 for i = base0 + base : base0 + base + 7
     if cl(i) == si;
         hit2  = hit2 + 1;
-%         x(i) = MAX;
+
         lru_stamp(i) = lru;
         lru = lru + 1;
         return;
-%     else continue;
     end
 end
 
@@ -31,10 +31,7 @@ for i = base0 + base : base0 + base + 7
         cl(i) = si;
         lru_stamp(i) = lru;
         lru = lru + 1;
-%         x(i) = MAX;
-        %for j = (set_num + base) : (set_num + base + 8)
         return;
-    else continue;
     end
 end
 

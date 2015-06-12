@@ -1,8 +1,7 @@
 function replace_1(si)
 % using this function to replace cacheline;
-global num_set cl MAX lru_stamp lru x hit num_app1 num_app2;
-global cnt1;
-
+global num_set cl MAX lru_stamp lru x hit num_app1;
+global cnt1 cnt2 cnt3 cnt30;
 
 set_num = mod(si, num_set);
 % set_num = floor(set_num);
@@ -34,15 +33,15 @@ for i = base0 + base : base0 + base + 7
         lru_stamp(i) = lru;
         lru = lru + 1;
         x(i) = MAX;
-        %for j = (set_num + base) : (set_num + base + 8)
         return;
-%     else continue;
     end
 end
 
 % when miss happens and there is soft-isolatable cacheline
 for i = base0 : base0 + 15
     if x(i) == 0
+        cnt3(cnt30) = i;
+        cnt30 = cnt30 + 1;
         cnt1 = cnt1 + 1;
         cl(i) = si;
         x(i) = MAX;

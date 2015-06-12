@@ -9,8 +9,9 @@ num_cl = cache_size / cacheline_size;
 num_memaccess = app_mem / cacheline_size; % shold be: 100 * num_cl
 set_size = 16;
 num_set = num_cl / set_size;
-n = 80000;
 hit2 = 0;
+
+n = 80000;
 % sets = 1 : num : set; % sets represents all set number;
 cl = zeros(1, num_cl); % cl stores the data of cacheline;
 % x = ones(1, num_cl); % x keeps track of the status of all cacheline;
@@ -27,6 +28,8 @@ lru_stamp = -1 * lru_stamp;
 s1 = zeros(1, n); % si is the access of app i, init to all-zero;
 s2 = zeros(1, n);
 rand_temp = [-1 -1];
+
+rand_gen6_init;
 rand('seed', 0);
 for i = 1 : n
     rand_temp = rand_gen6;
