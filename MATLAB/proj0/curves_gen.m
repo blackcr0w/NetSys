@@ -12,7 +12,7 @@ title('cdf of app1');
 s1min = min(s1);
 s1max = max(s1);
 xp = linspace(s1min, s1max, 20);
-f = ksdensity(s1,xp);
+f = ksdensity(s1,xp, 'bandwidth', 1);
 subplot(1,2,2), plot(xp, f, '+');
 % axis([0 200 0 1]);
 title('pdf fo app1');
