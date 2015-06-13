@@ -66,7 +66,7 @@ end
 
 seg_num = 8 - base;
 for i = (base0 + seg_num) : (base0 + seg_num + 7)
-    x(i) = x(i) * 0.5;
+    x(i) = x(i) * 0.99;
     x(i) = floor(x(i));
 end 
 

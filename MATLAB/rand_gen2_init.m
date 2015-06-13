@@ -1,0 +1,1 @@
+function rand_gen2_init
