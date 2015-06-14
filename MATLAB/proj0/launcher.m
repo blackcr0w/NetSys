@@ -1,6 +1,6 @@
 clear;
 global cache_size cacheline_size app_mem num_cl num_memaccess n num_set cl;
-global lru lru_stamp x hit MAX;
+global lru lru_stamp x hit MAX hit_app1 hit_app2;
 global s1 s2;
 global cnt1 cnt2 cnt3 cnt30;
 cnt1 = 0; cnt2 = 0; cnt3 = zeros(1, 10000); cnt30 = 1;
@@ -13,8 +13,9 @@ num_memaccess = app_mem / cacheline_size; % shold be: 100 * num_cl
 set_size = 16; % this is a 16-way set assiciated, every set has 16 cache lines
 num_set = num_cl / set_size; % total set number
 hit  = 0;
-% n: each application will access the memory for millions of times;
-n = 20000;
+n = 40000; % n: each application will access the memory for millions of times;
+hit_app1 = 0; hit_app2 = 0;
+
 
 % sets = 1 : num : set; % sets represents all set number;
 cl = zeros(1, num_cl); % cl stores the data of all cachelines;
@@ -52,10 +53,10 @@ s1 = zeros(1, n); % si is the access of app i, init to all-zero;
 s2 = zeros(1, n);
 rand_temp = [-1 -1]; % rand_temp is the memory access of app1 and app2 in this loop
 
-rand_gen2_init;
+rand_gen6_init;
 rand('seed', 0);
 for i = 1 : n
-    rand_temp = rand_gen2;
+    rand_temp = rand_gen6;
     s1(i) = rand_temp(1);
     s2(i) = rand_temp(2);
     replace_1(s1(i));

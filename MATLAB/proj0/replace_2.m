@@ -1,7 +1,7 @@
 
 function replace_2(si) %%
 % using this function simiulating the case without soft isolation, only lru
-global num_set cl lru_stamp lru hit2;
+global num_set cl lru_stamp lru hit2 hit_app1 hit_app2;
 global num_app1;
 set_num = mod(si, num_set);
 % set_num = int32(set_num);
@@ -18,7 +18,11 @@ end
 for i = base0 + base : base0 + base + 7
     if cl(i) == si;
         hit2  = hit2 + 1;
-
+        if base == 8
+            hit_app2 = hit_app2 + 1;
+        else 
+            hit_app1 = hit_app1 + 1;
+        end
         lru_stamp(i) = lru;
         lru = lru + 1;
         return;

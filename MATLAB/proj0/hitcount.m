@@ -186,5 +186,18 @@ improvement = ;
 % change
 % (2)
 
+%%%%%%%%%%%%% Jun. 12 %%%%%%%%%
 
+%%%%%%%%%%%%% rand_gen6 %%%%%%%
+app2workset = [0.6, 0.9, 1.5, ]
+improvement = [0.2247, 0.1652, ];
+hit = [159596, 159442, 133024, ];
+hit2 = [124349, 106590];
+% soft-isolation:
+hit_app1 = [800000, 80000,];
+hit_app2 = [79597, 79443, ];
+
+% hard-isolation:
+hit_app1 = [800000, ];
+hit_app2 = [79597, 44350];
 
