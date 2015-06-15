@@ -1,7 +1,8 @@
 function replace_1(si)
 % using this function to replace cacheline;
 global num_set cl MAX lru_stamp lru x hit num_app1 hit_app1 hit_app2;
-global cnt1 cnt3 cnt30;
+global cnt1 cnt3 cnt30; % cnt1 is the number of times of soft-isolation
+% cnt3 records the cache line number when soft-isolation happens.
 
 set_num = mod(si, num_set);
 % set_num = floor(set_num);
