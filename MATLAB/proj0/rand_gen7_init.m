@@ -6,7 +6,7 @@ global alphabet1 alphabet2 prob1 prob2;
 % app1 access to only 1 addr, app2 has workset = 90% * cache
 % NOTE: N choice: 8e4
 
-num_app1cl1 = round(num_cl * 0.5 * 0.9); num_app1cl2 = round(num_cl * 0.5 * 4.1);
+num_app1cl1 = round(num_cl * 0.5 * 0.8); num_app1cl2 = round(num_cl * 0.5 * 4.2);
 prob1_factor1 = 0.9 / num_app1cl1; 
 prob1_factor2 = 0.1 / num_app1cl2; 
 prob11 = ones(1, num_app1cl1); prob11 = prob11 * prob1_factor1;

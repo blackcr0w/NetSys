@@ -29,11 +29,9 @@ hold on;
 plot(prob_app1_part1, app1_improv, 'r--*');
 hold on; 
 plot(prob_app1_part1, app2_improv, 'g--+');
-xlabel ('the partition of app1 with probabilitiy of 0.9');
-ylabel ('hit rate improvement');
-title('the variation of hit rate when access pattern changes');
-h = legend('overall improvement','app1 improvemetn', 'app2 improvement');
-set(h,'Fontsize',12);
+xlabel ('probability of m1');
+ylabel ('improved overall hit rate');
+title('how hit rate improves when access pattern changes');
 
 figure, subplot(1,2,1),ecdf(s1);
 title('cdf of app1');
