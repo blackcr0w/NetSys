@@ -177,8 +177,8 @@ ma
 % this is the worse case
 % cannot see much more
 hit = 3959; hitrate = 0.049485;
-hit2 = 3959; hitrate2 = 0.049485;;
-improvement = ;
+hit2 = 3959; hitrate2 = 0.049485;
+improvement = 
 
 
 % 3. diff parameters for rand_gen3
