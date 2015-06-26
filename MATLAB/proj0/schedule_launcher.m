@@ -48,7 +48,8 @@ lru_stamp = -1 * lru_stamp;
 % I should think about cases of distributio that the soft isolation works
 % well and when it works bad;
 
-s1 = zeros(1, n); % si is the access of app i, init to all-zero;
+s1 = zeros(1, n * 2); % si is the access of app i, init to all-zero;
+% this is the case when app1 is scheduled twice than app2
 s2 = zeros(1, n);
 rand_temp = [-1 -1]; % rand_temp is the memory access of app1 and app2 in this loop
 
