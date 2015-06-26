@@ -8,7 +8,7 @@ global alphabet1 alphabet2 prob1 prob2;
 % but different access probability
 % NOTE: N choice: 8e4
 
-num_app1cl1 = round(num_cl * 0.5 * 0.8); num_app1cl2 = round(num_cl * 0.5 * 4.2);
+num_app1cl1 = round(num_cl * 0.5 * 0.3); num_app1cl2 = round(num_cl * 0.5 * 4.7);
 prob1_factor1 = 0.9 / num_app1cl1; 
 prob1_factor2 = 0.1 / num_app1cl2; 
 prob11 = ones(1, num_app1cl1); prob11 = prob11 * prob1_factor1;
