@@ -51,17 +51,18 @@ lru_stamp = -1 * lru_stamp;
 s1 = zeros(1, n * 2); % si is the access of app i, init to all-zero;
 % this is the case when app1 is scheduled twice than app2
 s2 = zeros(1, n);
-rand_temp = [-1 -1]; % rand_temp is the memory access of app1 and app2 in this loop
+rand_temp = [-1 -1 -1]; % rand_temp is the memory access of app1 and app2 in this loop
 
 rand_gen7_init;
 rand('seed', 0);
 for i = 1 : n
-    rand_temp = rand_gen_univ;
-    s1(i) = rand_temp(1);
-    s2(i) = rand_temp(2);
-    replace_1(s1(i));
+    rand_temp = schedule_rand_gen_univ;
+    s1(2 * i - 1) = rand_temp(1);
+    s1(2 * i) = rand_temp(2);
+    s2(i) = rand_temp(3);
+    replace_1(s1(2 * i - 1));
+    replace_1(s1(2 * i));
     replace_1(s2(i));
-    
 end
 
 mybeep;
