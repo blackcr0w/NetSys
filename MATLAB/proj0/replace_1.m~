@@ -61,12 +61,10 @@ for i = base0 : base0 + 15
 end
 
 % when miss happens, using LRU and hard-isolation
-% check the part of set belongs to the current app
+
 ii = getLRU(base0, base);
 cl(ii) = si;
 x(ii) = MAX;
-
-% for the part of set belongs to the current app
 for i = (base0 + base) : (base0 + base + 7)
     if i ~= ii
         x(i) = x(i) - 1;
@@ -74,7 +72,7 @@ for i = (base0 + base) : (base0 + base + 7)
 %     else continue;
     end 
 end
-% for the part of set belongs to the other app
+
 seg_num = 8 - base;
 for i = (base0 + seg_num) : (base0 + seg_num + 7)
     x(i) = x(i) * 0.5;
