@@ -1,4 +1,5 @@
-function Y = schedule_launcher(portion)
+function Y = schedule1_launcher(portion)
+% schedule1 is the case when app1 is scheduled twice than app2.
 global cache_size cacheline_size app_mem num_cl num_memaccess n num_set cl;
 global lru lru_stamp x hit MAX hit_app1 hit_app2;
 global s1 s2;
@@ -49,25 +50,24 @@ lru_stamp = -1 * lru_stamp; % Question: original value all -1.
 % I should think about cases of distributio that the soft isolation works
 % well and when it works bad;
 
-s1 = zeros(1, n); % si is the access of app i, init to all-zero;
-s2 = zeros(1, n * 2);
+s1 = zeros(1, n * 2); % si is the access of app i, init to all-zero;
+s2 = zeros(1, n);
 rand_temp = [-1 -1 -1]; % rand_temp is the memory access of app1 and app2 in this loop
 
 rand_gen7_init(portion);
 rand('seed', 0);
 for i = 1 : n
-    rand_temp = schedule2_rand_gen_univ;
-    s1(i) = rand_temp(1);
-    s2(2 * i - 1) = rand_temp(2);
-    s2(2 * i) = rand_temp(3);
-    replace_1(s1(i));
-    replace_1(s2(2 * i - 1));
-    replace_1(s2(2 * i));
+    rand_temp = schedule_rand_gen_univ;
+    s1(2 * i - 1) = rand_temp(1);
+    s1(2 * i) = rand_temp(2);
+    s2(i) = rand_temp(3);
+    replace_1(s1(2 * i - 1));
+    replace_1(s1(2 * i));
+    replace_1(s2(i));
 end
 
 Y = [hit hit_app1 hit_app2 cnt1];
 
-mybeep;
 
 % the next is drawing the Probability density function and cumulative
 % distribution function of current accessing pattern

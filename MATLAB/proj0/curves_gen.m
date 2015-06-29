@@ -19,10 +19,14 @@ s2_app1_improv = s2_hitrate1_app1 - s2_hitrate2_app1;
 s2_app2_improv = s2_hitrate1_app2 - s2_hitrate2_app2;
 figure, plot(s2_prob, s2_overall_improv, 'b');
 grid on;
+set(gca,'YMinorGrid','on');
 hold on; 
-plot(s2_prob, s2_app1_improv, 'g');
+plot(s2_prob, s2_app1_improv, 'g--*');
 hold on; 
-plot(s2_prob, s2_app2_improv, 'r');
+plot(s2_prob, s2_app2_improv, 'r--+');
+xlabel ('the partition of app1 with probabilitiy of 0.9');
+ylabel ('hit rate improvement');
+title('schedule2, the variation of hit rate when access pattern changes');
 h = legend('overall improvement','app1 improvemetn', 'app2 improvement');
 set(h,'Fontsize',12);
 

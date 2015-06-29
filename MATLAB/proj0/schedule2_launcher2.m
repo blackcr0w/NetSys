@@ -1,4 +1,4 @@
-function Y = schedule_launcher2(portion)
+function Y = schedule2_launcher2(portion)
 global cache_size cacheline_size app_mem num_cl num_memaccess n num_set cl;
 global lru lru_stamp hit2 hit_app1 hit_app2;
 global s1 s2;
