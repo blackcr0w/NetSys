@@ -23,5 +23,6 @@ global alphabet1 alphabet2 prob1 prob2;
 % num_app1 = numel(alphabet1); num_app2 = numel(alphabet2);
 Y(1) = randsrc(1, 1, [alphabet1; prob1]);
 Y(2) = randsrc(1, 1, [alphabet1; prob1]);
-Y(3) = randsrc(1, 1, [alphabet2; prob2]);
+Y(3) = randsrc(1, 1, [alphabet1; prob1]);
+Y(4) = randsrc(1, 1, [alphabet2; prob2]);
 % Q: App1 is always accessing odd cacheline, App2 is always accessing even

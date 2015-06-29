@@ -9,13 +9,13 @@ hit2 = zeros(1, 9); hit2_app1 = zeros(1, 9); hit2_app2 = zeros(1, 9);
 
 
 for i = 1 : 9
-    hits1(i, : ) = schedule1_launcher(portion(i));
+    hits1(i, : ) = schedule3_launcher(portion(i));
     hit1(i) = hits1(i, 1);
     hit1_app1(i) = hits1(i, 2);
     hit1_app2(i) = hits1(i, 3);
     hit1_cnt1 = hits1(i, 4);
     
-    hits2(i, : ) = schedule1_launcher2(portion(i));
+    hits2(i, : ) = schedule3_launcher2(portion(i));
     hit2(i) = hits2(i, 1);
     hit2_app1(i) = hits2(i, 2);
     hit2_app2(i) = hits2(i, 3);
