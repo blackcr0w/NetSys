@@ -1,0 +1,11 @@
+% function simu1_looper
+global portion
+for i = 1 : 9
+    portion = 0.1 * i;
+    [hits1(i) hits2(i)] = schedule_launcher(portion);
+    hit1(i) = hits1(i)(1);
+    hit1_app1(i) = hits1(i)(2);
+    hit1_app2(i) = hits1(i)(3);
+    hit1_cnt1 = hits1(i)(4);
+    
+    

@@ -1,4 +1,4 @@
-clear;
+function Y = schedule_launcher2(portion)
 global cache_size cacheline_size app_mem num_cl num_memaccess n num_set cl;
 global lru lru_stamp hit2 hit_app1 hit_app2;
 global s1 s2;
@@ -31,7 +31,7 @@ s2 = zeros(1, n * 2);
 rand_temp = [-1 -1 -1]; % rand_temp is the memory access of app1 and app2 in this loop
 
 
-rand_gen7_init;
+rand_gen7_init(portion);
 rand('seed', 0);
 for i = 1 : n
     rand_temp = schedule2_rand_gen_univ;
@@ -42,5 +42,7 @@ for i = 1 : n
     replace_2(s2(2 * i - 1));
     replace_2(s2(2 * i));
 end 
+
+Y = [hit2 hit_app1 hit_app2];
 
 mybeep;

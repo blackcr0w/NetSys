@@ -1,4 +1,4 @@
-function rand_gen7_init
+function rand_gen7_init(portion)
 global num_cl;
 global num_app1;
 global alphabet1 alphabet2 prob1 prob2;
@@ -7,8 +7,8 @@ global alphabet1 alphabet2 prob1 prob2;
 % adjusted case: app1 and app2 has working set = 2.5 * cache line 
 % but different access probability
 % NOTE: N choice: 8e4
-
-num_app1cl1 = round(num_cl * 0.5 * 0.3); num_app1cl2 = round(num_cl * 0.5 * 4.7);
+portion2 = 5 - portion;
+num_app1cl1 = round(num_cl * 0.5 * portion); num_app1cl2 = round(num_cl * 0.5 * portion2);
 prob1_factor1 = 0.9 / num_app1cl1; 
 prob1_factor2 = 0.1 / num_app1cl2; 
 prob11 = ones(1, num_app1cl1); prob11 = prob11 * prob1_factor1;
