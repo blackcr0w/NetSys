@@ -1,4 +1,6 @@
 % function simu1_looper
+clear; close all;
+
 portion = 1 : 1 : 9; portion  = portion * 0.1;
 hits1 = zeros(9, 4);
 hits2 = zeros(9, 3);
@@ -19,3 +21,6 @@ for i = 1 : 9
     hit2_app2(i) = hits2(i, 3);
 end
     
+load handel.mat;
+nBits = 16;
+sound(y,Fs,nBits);

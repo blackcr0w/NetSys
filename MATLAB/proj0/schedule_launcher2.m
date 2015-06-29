@@ -44,5 +44,3 @@ for i = 1 : n
 end 
 
 Y = [hit2 hit_app1 hit_app2];
-
-mybeep;
