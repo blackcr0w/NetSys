@@ -1,0 +1,6 @@
+function Y = schedule_run(sche_const)
+
+for i = 1 : 60000
+    if 
+
+Y = [hit1 hit1_app1 hit1_app2 hit2 hit2_app1 hit2_app2];
