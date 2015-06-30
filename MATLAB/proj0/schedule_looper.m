@@ -17,6 +17,7 @@ for i = 1 : numel(sche_const)
     hit2(i) = hits2(i, 1);
     hit2_app1(i) = hits2(i, 2);
     hit2_app2(i) = hits2(i, 3);
+    mybeep;
 end
     
 load handel.mat;

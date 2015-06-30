@@ -7,13 +7,14 @@
 % close all;
 global num_memaccess;
 
-s2_prob = portion;
-s2_hitrate1 = hit1 / 80000;
-s2_hitrate2 = hit2 / 80000;
-s2_hitrate1_app1 = hit1_app1 / 60000;
-s2_hitrate1_app2 = hit1_app2 / 20000;
-s2_hitrate2_app1 = hit2_app1 / 60000;
-s2_hitrate2_app2 = hit2_app2 / 20000;
+s2_prob = sche_const;
+hit_app1_num = sche_const .* 60000; hit_app2_num = 60000 - hit_app1_num;
+s2_hitrate1 = hit1 / 60000 ;
+s2_hitrate2 = hit2 / 60000;
+s2_hitrate1_app1 = hit1_app1 ./ hit_app1_num;
+s2_hitrate1_app2 = hit1_app2 ./ hit_app2_num;
+s2_hitrate2_app1 = hit2_app1 ./ hit_app1_num;
+s2_hitrate2_app2 = hit2_app2 ./ hit_app2_num;
 s2_overall_improv = s2_hitrate1 - s2_hitrate2;
 s2_app1_improv = s2_hitrate1_app1 - s2_hitrate2_app1;
 s2_app2_improv = s2_hitrate1_app2 - s2_hitrate2_app2;
@@ -29,6 +30,27 @@ ylabel ('hit rate improvement');
 title('schedule3, the variation of hit rate when access pattern changes');
 h = legend('overall improvement','app1 improvemetn', 'app2 improvement');
 set(h,'Fontsize',12);
+
+
+% s2_hitrate1_app1 = hit1_app1 / 60000;
+% s2_hitrate1_app2 = hit1_app2 / 20000;
+% s2_hitrate2_app1 = hit2_app1 / 60000;
+% s2_hitrate2_app2 = hit2_app2 / 20000;
+% s2_overall_improv = s2_hitrate1 - s2_hitrate2;
+% s2_app1_improv = s2_hitrate1_app1 - s2_hitrate2_app1;
+% s2_app2_improv = s2_hitrate1_app2 - s2_hitrate2_app2;
+% figure, plot(s2_prob, s2_overall_improv, 'b');
+% grid on;
+% set(gca,'YMinorGrid','on');
+% hold on; 
+% plot(s2_prob, s2_app1_improv, 'g--*');
+% hold on; 
+% plot(s2_prob, s2_app2_improv, 'r--+');
+% xlabel ('the partition of app1 with probabilitiy of 0.9');
+% ylabel ('hit rate improvement');
+% title('schedule3, the variation of hit rate when access pattern changes');
+% h = legend('overall improvement','app1 improvemetn', 'app2 improvement');
+% set(h,'Fontsize',12);
 
 
 % s_prob_app1_part1 = [0.1 0.3 0.5 0.7 0.8 0.9];
