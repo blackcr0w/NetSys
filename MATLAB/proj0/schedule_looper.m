@@ -3,7 +3,7 @@ clear; close all;
 % both uniform, working set = 3 * cacheline * 0.5
 
 sche_const = [0.01 0.1 1 5 10 20 40 50 70 100];
-hits1 = zeros(10, 6); hits2 = zeros(10, 6);
+hits1 = zeros(10, 3); hits2 = zeros(10, 3);
 hit1 = zeros(1, 9); hit1_app1 = zeros(1, 9); hit1_app2 = zeros(1, 9); hit1_cnt1 = zeros(1, 9); 
 hit2 = zeros(1, 9); hit2_app1 = zeros(1, 9); hit2_app2 = zeros(1, 9);
 
