@@ -4,7 +4,7 @@ global cache_size cacheline_size app_mem num_cl num_memaccess n num_set cl;
 global lru lru_stamp x hit MAX hit_app1 hit_app2;
 global s1 s2;
 global cnt1 cnt2 cnt3 cnt30;
-cnt1 = 0; cnt2 = 0; cnt3 = zeros(1, 10000); cnt30 = 1; 
+cnt1 = 0; cnt3 = zeros(1, 10000); cnt30 = 1; 
 % cnt1 tracks how many soft-isolation happens;
 % cnt3 and cnt 30 tracks the number of cacheline where soft-isolation happens
 

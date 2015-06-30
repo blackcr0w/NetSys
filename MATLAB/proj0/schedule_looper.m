@@ -1,11 +1,11 @@
 clear; close all;
 % this is the case when app1 and app2 have the same access
 % both uniform, working set = 3 * cacheline * 0.5
-
-sche_const = [0.01 0.1 1 5 10 20 40 50 70 100];
+global s1 s2;
+sche_const = [0.01 0.05 0.1 0.3 0.5 0.7 0.9 0.95 0.975 0.99];
 hits1 = zeros(10, 3); hits2 = zeros(10, 3);
-hit1 = zeros(1, 9); hit1_app1 = zeros(1, 9); hit1_app2 = zeros(1, 9); hit1_cnt1 = zeros(1, 9); 
-hit2 = zeros(1, 9); hit2_app1 = zeros(1, 9); hit2_app2 = zeros(1, 9);
+hit1 = zeros(1, 10); hit1_app1 = zeros(1, 10); hit1_app2 = zeros(1, 10);
+hit2 = zeros(1, 10); hit2_app1 = zeros(1, 10); hit2_app2 = zeros(1, 10);
 
 for i = 1 : numel(sche_const)
     hits1(i, : ) = sche_vary_soft(sche_const(i));
