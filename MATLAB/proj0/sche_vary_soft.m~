@@ -50,23 +50,22 @@ lru_stamp = -1 * lru_stamp; % Question: original value all -1.
 % I should think about cases of distributio that the soft isolation works
 % well and when it works bad;
 
-s1 = zeros(1, n * 2); % si is the access of app i, init to all-zero;
-s2 = zeros(1, n);
+s1 = []; s2 = [];
 rand_temp = -1; % rand_temp is the memory access of app1 and app2 in this loop
 
 rand('seed', 0);
 for i = 1 : n
     app_to_run = schedule_gen(sche_const);
-    rand_temp = schedule_rand_gen_univ;
-    s1(2 * i - 1) = rand_temp(1);
-    s1(2 * i) = rand_temp(2);
-    s2(i) = rand_temp(3);
-    replace_1(s1(2 * i - 1));
-    replace_1(s1(2 * i));
-    replace_1(s2(i));
+    rand_temp = sche_rand_gen(app_to_run);
+    if app_to_run == 1
+        s1 = [s1 rand_temp];
+    else
+        s2 = [s2 rand_temp];
+    end
+    replace_1(s1(numel(s1)));
 end
 
-Y = [hit hit_app1 hit_app2 cnt1];
+Y = [hit hit_app1 hit_app2];
 
 
 % the next is drawing the Probability density function and cumulative
