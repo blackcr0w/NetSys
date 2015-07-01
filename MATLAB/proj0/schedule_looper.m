@@ -19,7 +19,7 @@ for i = 1 : numel(sche_const)
     hit2_app2(i) = hits2(i, 3);
     mybeep;
 end
-    
+
 load handel.mat;
 nBits = 16;
 sound(y,Fs,nBits);

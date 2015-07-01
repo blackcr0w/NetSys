@@ -32,7 +32,7 @@ rand_temp = -1; % rand_temp is the memory access of app1 and app2 in this loop
 rand('seed', 0);
 for i = 1 : n
     app_to_run = schedule_gen(sche_const);
-    rand_temp = sche_rand_gen3(app_to_run);
+    rand_temp = sche_rand_gen4(app_to_run);
     if app_to_run == 1
         s1 = [s1 rand_temp];
     else
