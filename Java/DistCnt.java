@@ -15,18 +15,36 @@ public class DistCnt{
 			String line = new String();
 			line = "0x7fd54a74e2d3: W 0x7fff7b4b1f18";
 			while ((line = bufferedReader.readLine()) != null) {
-				if (line.equals("#eof"))
-					
-				String[] addrs = line.split(": W ");
+
+				if (lines[i].equals("#eof"))
+				break;
+
+			if (lines[i].contains(": R ")) {
+				String[] addrs = lines[i].split(": R ");
 				String ip = addrs[0]; 
-				String mem = addrs[2];
-				if (map.containsKey(mem)) {
-					Integer cnt = map.get(mem);
-					map.put(mem, cnt + 1);
+				String mem = addrs[1];
+
+				if (addrMap.containsKey(mem)) {
+					Integer cnt = addrMap.get(mem);
+					addrMap.put(mem, cnt + 1);
 				}
 				else
-					map.put(mem, 1);
+					addrMap.put(mem, 1);
 			}
+
+			if (lines[i].contains(": W ")) {
+				String[] addrs = lines[i].split(": W ");
+				String ip = addrs[0]; 
+				String mem = addrs[1];
+
+				if (addrMap.containsKey(mem)) {
+					Integer cnt = addrMap.get(mem);
+					addrMap.put(mem, cnt + 1);
+				}
+				else
+					addrMap.put(mem, 1);
+			}
+		}
 			fileReader.close();
 		}
 		
