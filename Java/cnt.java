@@ -8,7 +8,7 @@ public class cnt{
 		Map<String, Integer> addrMap = new HashMap<String, Integer>();
 
 		try {
-			File file = new File("sample.out");
+			File file = new File("pinatrace.out");
 			FileReader fileReader = new FileReader(file);
 			BufferedReader bufferedReader = new BufferedReader(fileReader);
 			StringBuffer stringBuffer = new StringBuffer();
@@ -51,20 +51,19 @@ public class cnt{
 		catch (IOException e) {
 			e.printStackTrace();
 		}
-		// System.out.println(addrMap);
-		Iterator it = addrMap.entrySet().iterator();
-		while(it.hasNext()) {
-			Map.Entry<String, Integer> entry = (Map.Entry<String, Integer>)it.next();
-			try {
-		      PrintWriter out = new PrintWriter(new FileWriter("result.txt"));
-		      out.println(entry);
-		      out.close();
-		   }
-		      catch(IOException e1) {
-		        System.out.println("Error during reading/writing");
-		   }
-		   
+		try {
+			PrintWriter out = new PrintWriter(new FileWriter("result.txt"));
+			Iterator it = addrMap.entrySet().iterator();
+			while(it.hasNext()) {
+				Map.Entry<String, Integer> entry = (Map.Entry<String, Integer>)it.next();
+				out.println(entry);
+			}
+			out.close();
 		}
+		catch(IOException e1) {
+		        System.out.println("Error during reading/writing");
+		}   
+		
 	}
 
 }

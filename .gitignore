@@ -4,3 +4,5 @@
     *.my
 # ignore generated class files,
     *.class
+# ignore the text files,
+    *.txt
