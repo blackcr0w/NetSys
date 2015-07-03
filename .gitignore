@@ -1,0 +1,4 @@
+# ignore generated output files,
+    *.out
+# ignore generated "my" files,
+    *.my
