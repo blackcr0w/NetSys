@@ -55,7 +55,15 @@ public class cnt{
 		Iterator it = addrMap.entrySet().iterator();
 		while(it.hasNext()) {
 			Map.Entry<String, Integer> entry = (Map.Entry<String, Integer>)it.next();
-			System.out.println(entry);
+			try {
+		      PrintWriter out = new PrintWriter(new FileWriter("result.txt"));
+		      out.println(entry);
+		      out.close();
+		   }
+		      catch(IOException e1) {
+		        System.out.println("Error during reading/writing");
+		   }
+		   
 		}
 	}
 
