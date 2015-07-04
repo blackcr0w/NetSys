@@ -27,7 +27,7 @@ public class Sorting {
     	return keys[1];
     }
 
-	public class MapEntry {
+	public static class MapEntry {
 		String hexKey;
 		int value;
 		long decimalKey;
@@ -39,6 +39,18 @@ public class Sorting {
 			decimalKey = hex2decimal(hexKey);
 		}
 	}
+
+	static class MapEntryComp implements Comparator<MapEntry>{
+	    @Override
+	    public int compare(MapEntry e1, MapEntry e2) {
+	        if(e1.decimalKey < e2.decimalKey) {
+	            return 1;
+	        } else {
+	            return -1;
+	        }
+	    }
+	}
+
 	public static void main(String[] args) {
 		ArrayList<MapEntry> list = new ArrayList<MapEntry>();
 		try {
@@ -52,8 +64,8 @@ public class Sorting {
 					break;
 				else {
 					String[] keyValue = lines.split("=");
-					key = keyValue[0];
-					value = keyValue[1];
+					String key = keyValue[0];
+					int value = Integer.parseInt(keyValue[1]);
 					MapEntry entry = new MapEntry(key, value);
 					list.add(entry);
 				}
@@ -63,35 +75,25 @@ public class Sorting {
 			e.printStackTrace();
 		}
 
-		Collections.sort(list,new MapEntryComp());
+		Collections.sort(list, new MapEntryComp());
 
 		try {
 			PrintWriter out = new PrintWriter(new FileWriter("sorted.txt"));
-			Iterator it = list.entrySet().iterator();
+			Iterator<MapEntry> it = list.iterator();
 			while(it.hasNext()) {
-				Map.Entry<String, Integer> entry = (Map.Entry<String, Integer>)it.next();
-				out.println(entry);
+				MapEntry entry = (MapEntry)it.next();
+				out.println(entry.decimalKey + entry.value);
 			}
 			out.close();
 		}
 		catch(IOException e1) {
-		        System.out.println("Error during reading/writing");
+		        System.out.println("Error during writing");
 		}   
 
 	}
 	
 }
 
-class MapEntryComp implements Comparator<MapEntry>{
-    @Override
-    public int compare(MapEntry e1, MapEntry e2) {
-        if(e1.decimalKey() < e2.decimalKey()){
-            return 1;
-        } else {
-            return -1;
-        }
-    }
-}
 
 
 
