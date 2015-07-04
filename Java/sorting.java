@@ -43,7 +43,7 @@ public class Sorting {
 	static class MapEntryComp implements Comparator<MapEntry>{
 	    @Override
 	    public int compare(MapEntry e1, MapEntry e2) {
-	        if(e1.decimalKey < e2.decimalKey) {
+	        if(e1.decimalKey > e2.decimalKey) {
 	            return 1;
 	        } else {
 	            return -1;
@@ -78,13 +78,16 @@ public class Sorting {
 		Collections.sort(list, new MapEntryComp());
 
 		try {
-			PrintWriter out = new PrintWriter(new FileWriter("sorted.txt"));
+			PrintWriter addr = new PrintWriter(new FileWriter("addr.txt"));
+			PrintWriter freq = new PrintWriter(new FileWriter("freq.txt"));
 			Iterator<MapEntry> it = list.iterator();
 			while(it.hasNext()) {
 				MapEntry entry = (MapEntry)it.next();
-				out.println(entry.decimalKey + entry.value);
+				addr.println(entry.hexKey);
+				freq.println(entry.value);
 			}
-			out.close();
+			addr.close();
+			freq.close();
 		}
 		catch(IOException e1) {
 		        System.out.println("Error during writing");
