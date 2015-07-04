@@ -13,7 +13,7 @@ public class cnt{
 			BufferedReader bufferedReader = new BufferedReader(fileReader);
 			StringBuffer stringBuffer = new StringBuffer();
 			String lines = new String();
-			lines = "0x7fd54a74e2d3: W 0x7fff7b4b1f18";
+			
 			while ((lines = bufferedReader.readLine()) != null) {
 
 				if (lines.equals("#eof"))
