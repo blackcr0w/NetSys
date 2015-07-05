@@ -78,16 +78,20 @@ public class Sorting {
 		Collections.sort(list, new MapEntryComp());
 
 		try {
-			PrintWriter addr = new PrintWriter(new FileWriter("addr.txt"));
-			PrintWriter freq = new PrintWriter(new FileWriter("freq.txt"));
+			// PrintWriter addr = new PrintWriter(new FileWriter("addr.txt"));
+			// PrintWriter freq = new PrintWriter(new FileWriter("freq.txt"));
+			int sumFreq = 0;
+			PrintWriter addrDec = new PrintWriter(new FileWriter("addrDec.txt"));
 			Iterator<MapEntry> it = list.iterator();
 			while(it.hasNext()) {
 				MapEntry entry = (MapEntry)it.next();
-				addr.println(entry.hexKey);
-				freq.println(entry.value);
+				addrDec.println(entry.decimalKey);
+				sumFreq = sumFreq + entry.value;
+				
 			}
-			addr.close();
-			freq.close();
+			addrDec.close();
+			System.out.println(sumFreq);
+			
 		}
 		catch(IOException e1) {
 		        System.out.println("Error during writing");

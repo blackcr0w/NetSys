@@ -124,7 +124,7 @@ set(h,'Fontsize',12);
 % figure, subplot(1,2,1), ecdf(s2);
 % title('cdf of app2');
 % [f, xc] = ecdf(s2);
-% subplot(1, 2, 2), ecdfhist(f, xc);
+% subplot(1, 2, 2), ehist(f, xc);
 % title('pdf of app2')
 % 
 % % m1 = [0.45, 0.5, 0.7, 0.8];
