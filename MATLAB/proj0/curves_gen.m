@@ -7,27 +7,27 @@
 % close all;
 global num_memaccess;
 
-s2_prob = sche_const;
+s1_prob = sche_const; % edited this line, sche_const is the prob of s1??
 hit_app1_num = sche_const .* 60000; hit_app2_num = 60000 - hit_app1_num;
-s2_hitrate1 = hit1 / 60000 ;
-s2_hitrate2 = hit2 / 60000;
-s2_hitrate1_app1 = hit1_app1 ./ hit_app1_num;
-s2_hitrate1_app2 = hit1_app2 ./ hit_app2_num;
-s2_hitrate2_app1 = hit2_app1 ./ hit_app1_num;
-s2_hitrate2_app2 = hit2_app2 ./ hit_app2_num;
-s2_overall_improv = s2_hitrate1 - s2_hitrate2;
-s2_app1_improv = s2_hitrate1_app1 - s2_hitrate2_app1;
-s2_app2_improv = s2_hitrate1_app2 - s2_hitrate2_app2;
-figure, plot(s2_prob, s2_overall_improv, 'b');
+hitrate1 = hit1 / 60000 ;
+hitrate2 = hit2 / 60000;
+hitrate1_app1 = hit1_app1 ./ hit_app1_num;
+hitrate1_app2 = hit1_app2 ./ hit_app2_num;
+hitrate2_app1 = hit2_app1 ./ hit_app1_num;
+hitrate2_app2 = hit2_app2 ./ hit_app2_num;
+overall_improv = hitrate1 - hitrate2;
+app1_improv = hitrate1_app1 - hitrate2_app1;
+app2_improv = hitrate1_app2 - hitrate2_app2;
+figure, plot(s1_prob, overall_improv, 'b');
 grid on;
 set(gca,'YMinorGrid','on');
 hold on; 
-plot(s2_prob, s2_app1_improv, 'g--*');
+plot(s1_prob, app1_improv, 'g--*');
 hold on; 
-plot(s2_prob, s2_app2_improv, 'r--+');
+plot(s1_prob, app2_improv, 'r--+');
 xlabel ('changing the scheduling');
 ylabel ('hit rate improvement');
-title('work set size: app1 = 0.5 * 0.5 * cache, app2 = 0.75 * 0.5 * cache');
+title('work set size: app1 = 0.5 * cache, app2 = 0.5 * cache');
 h = legend('overall improvement','app1 improvemetn', 'app2 improvement');
 set(h,'Fontsize',12);
 
