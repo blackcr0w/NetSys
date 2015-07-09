@@ -15,7 +15,7 @@ num_cl = cache_size / cacheline_size; % actual cache line number;
 num_memaccess = app_mem / cacheline_size; % working set size, shold be: 100 * num_cl
 set_size = 16; % this is a 16-way set assiciated, every set has 16 cache lines
 num_set = num_cl / set_size; % number of cache sets
-n = 60000; % n: each application will access the memory for millions of times;
+n = 180000; % n: each application will access the memory for millions of times;
 hit  = 0; hit_app1 = 0; hit_app2 = 0; % hit is total hit times, hit_app1 is the time app1 hits
 
 cl = zeros(1, num_cl); % cl stores the data of all cachelines;

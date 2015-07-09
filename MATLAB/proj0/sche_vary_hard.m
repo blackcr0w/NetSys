@@ -11,7 +11,7 @@ num_cl = cache_size / cacheline_size;
 num_memaccess = app_mem / cacheline_size; % shold be: 100 * num_cl
 set_size = 16;
 num_set = num_cl / set_size;
-n = 60000;
+n = 180000;
 hit2 = 0;
 hit_app1 = 0; hit_app2 = 0;
 % sets = 1 : num : set; % sets represents all set number;

@@ -28,19 +28,14 @@ plot(s1_prob, app2_improv, 'r--+');
 xlabel ('changing the scheduling');
 ylabel ('hit rate improvement');
 title('work set size: app1 = 0.5 * cache, app2 = 0.75 * cache');
-h = legend('overall improvement','app1 improvemetn', 'app2 improvement', 'Location', 'SouthEast');
+h = legend('overall improvement','app1 improvemetn', 'app2 improvement');
 set(h,'Fontsize',12);
 
-figure, plot(s1_prob, hitrate1_app2, 'r--+');
+figure, plot(s1_prob, hitrate1_app1, 'c');
 grid on;
 set(gca,'YMinorGrid','on');
 hold on; 
 plot(s1_prob, hitrate2_app2, 'g--*');
-xlabel ('changing the scheduling');
-ylabel ('app2 hit rate');
-title('work set size: app1 = 0.25 * cache, app2 = 0.75 * cache');
-h = legend('app2 hit rate in soft', 'app2 hit rate in hard', 'Location', 'SouthWest');
-set(h,'Fontsize',12);
 
 
 % s2_hitrate1_app1 = hit1_app1 / 60000;
