@@ -3,7 +3,7 @@ clear; close all;
 % both uniform, working set = 3 * cacheline * 0.5
 global s1 s2;
 % sche_const = [0.01 0.05 0.1 0.3 0.5 0.7 0.9 0.95 0.975 0.99];
-sche_const = [0.01 0.03 0.05 0.1 0.3 0.5 0.7 0.9 0.95 0.975 0.99];
+sche_const = [0.01 0.03 0.05 0.07 0.1 0.2 0.3 0.5 0.7 0.9 0.95 0.99];
 mm = numel(sche_const);
 hits1 = zeros(mm, 3); hits2 = zeros(mm, 3);
 hit1 = zeros(1, mm); hit1_app1 = zeros(1, mm); hit1_app2 = zeros(1, mm);

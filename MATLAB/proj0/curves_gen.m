@@ -27,7 +27,7 @@ hold on;
 plot(s1_prob, app2_improv, 'r--+');
 xlabel ('changing the scheduling');
 ylabel ('hit rate improvement');
-title('work set size: app1 = 0.5 * cache, app2 = 0.5 * cache');
+title('work set size: app1 = 0.25 * cache, app2 = 0.75 * cache');
 h = legend('overall improvement','app1 improvemetn', 'app2 improvement');
 set(h,'Fontsize',12);
 

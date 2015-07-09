@@ -3,7 +3,7 @@ function Y = sche_rand_gen5(app_to_run)
 % app1 = 0.5 * cache, app2 = 0.5 * cahce;
 global num_cl;
 global num_app1;
-num_workset1 = 0.5 * 0.5 * num_cl;
+num_workset1 = 1 * 0.5 * num_cl;
 num_workset2 = 1.5 * 0.5 * num_cl;
 
 prob1_factor = 1 / num_workset1; prob2_factor = 1 / num_workset2;
