@@ -10,7 +10,7 @@ prob1_factor = 1 / num_workset1; prob2_factor = 1 / num_workset2;
 prob1 = ones(1, num_workset1); prob1 = prob1 * prob1_factor;
 prob2 = ones(1, num_workset2); prob2 = prob2 * prob2_factor;
 
-alphabet1 = (1 : 1 : num_workset1); alphabet2 = (num_workset1 + 1 : 1 :num_workset1 + num_workset2);
+alphabet1 = (1 : 1 : num_workset1); alphabet2 = (num_workset1 + 1 : 1 : num_workset1 + num_workset2);
 num_app1 = num_workset1;
 if app_to_run == 1
     Y = randsrc(1, 1, [alphabet1; prob1]);
