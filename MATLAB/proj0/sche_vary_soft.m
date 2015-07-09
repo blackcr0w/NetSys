@@ -3,7 +3,7 @@ function Y = sche_vary_soft(sche_const)
 global cache_size cacheline_size app_mem num_cl num_memaccess n num_set cl;
 global lru lru_stamp x hit MAX hit_app1 hit_app2;
 global s1 s2;
-global cnt1 cnt2 cnt3 cnt30;
+global cnt1 cnt3 cnt30;
 cnt1 = 0; cnt3 = zeros(1, 10000); cnt30 = 1; 
 % cnt1 tracks how many soft-isolation happens;
 % cnt3 and cnt 30 tracks the number of cacheline where soft-isolation happens
@@ -56,7 +56,7 @@ rand_temp = -1; % rand_temp is the memory access of app1 and app2 in this loop
 rand('seed', 0);
 for i = 1 : n
     app_to_run = schedule_gen(sche_const);
-    rand_temp = sche_rand_gen3(app_to_run);
+    rand_temp = sche_rand_gen5(app_to_run);
     if app_to_run == 1
         s1 = [s1 rand_temp];
     else
