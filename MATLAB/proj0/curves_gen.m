@@ -42,6 +42,17 @@ title('work set size: app1 = 0.25 * cache, app2 = 0.75 * cache');
 h = legend('app2 hit rate in soft', 'app2 hit rate in hard', 'Location', 'SouthWest');
 set(h,'Fontsize',12);
 
+figure, plot(s1_prob, hitrate1, 'r--+');
+grid on;
+set(gca,'YMinorGrid','on');
+hold on; 
+plot(s1_prob, hitrate2, 'g--*');
+xlabel ('changing the scheduling');
+ylabel ('hit rate');
+title('work set size: app1 = 0.25 * cache, app2 = 0.75 * cache');
+h = legend('overall hit rate in soft', 'overall hit rate in hard', 'Location', 'SouthEast');
+set(h,'Fontsize',12);
+
 
 % s2_hitrate1_app1 = hit1_app1 / 60000;
 % s2_hitrate1_app2 = hit1_app2 / 20000;

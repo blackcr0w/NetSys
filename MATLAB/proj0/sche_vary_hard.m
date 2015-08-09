@@ -6,7 +6,7 @@ global s1 s2;
 
 cache_size = 512;
 cacheline_size = 1;
-app_mem = 5 * 2^10; % should be: 100 * cache_size
+app_mem = 5 * 2^10; % should be: 100 * cache_size, in this case: 10 * cache_size
 num_cl = cache_size / cacheline_size;
 num_memaccess = app_mem / cacheline_size; % shold be: 100 * num_cl
 set_size = 16;
