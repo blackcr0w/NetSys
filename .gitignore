@@ -6,3 +6,5 @@
     *.class
 # ignore the text files,
     *.txt
+# ignore the .pyc files,
+    *.pyc
