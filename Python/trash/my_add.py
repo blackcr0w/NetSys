@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-__author__ = 'Mingjie Zhao (Jack)'
+__author__ = 'Mingjie Zhao'
 
 import sys
 

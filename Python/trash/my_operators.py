@@ -5,8 +5,9 @@
 
 __author__ = 'Mingjie Zhao'
 
-
-import operator
 def my_mul(x, y):
-	mul_const = 20
 	return x * y
+
+def my_add(x, y):
+	return x + y
+

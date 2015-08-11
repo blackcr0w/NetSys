@@ -1,4 +1,3 @@
-
 function replace_2(si) %%
 % using this function simiulating the case without soft isolation, only lru
 global num_set cl lru_stamp lru hit2 hit_app1 hit_app2;

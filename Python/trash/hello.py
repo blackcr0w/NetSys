@@ -3,7 +3,7 @@
 
 ' a test module '  # this is the comment for the doc(docstring)
 
-__author__ = 'Mingjie Zhao (Jack)'
+__author__ = 'Mingjie Zhao'
 
 import sys
 
