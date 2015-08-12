@@ -12,6 +12,7 @@ for cacheline, 0 - 1 is assigned to app1
 __author__ = ' Mingjie Zhao '
 
 import random
+import matplotlib.pyplot as plt
 
 # these are the global variables:
 N = 5  # run the program for N times
