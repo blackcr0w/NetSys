@@ -56,7 +56,7 @@ def getLRU(app):
 
 def main():	
 	global S1, S2, CL
-	random.seed( 10 )  # seed的位置需要试验一下
+	random.seed(10)  # seed的位置需要试验一下
 	for _ in range(N):
 		app = 1
 		rand_temp = rand_gen(app)
@@ -75,6 +75,9 @@ def main():
 		print('s1', S1)
 		print('s2', S2)
 		print('cl', CL)
+	plt.plot(S1)
+	plt.ylabel('S1')
+	plt.show()
 
 main()
 
