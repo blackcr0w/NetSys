@@ -18,11 +18,12 @@ import operator
 N = 5  # run the program for N times
 S1 = []  # S1 represents the memory access series of app1
 S2 = []  # S2 represents the memory access series of app2
-LRU = [-1 for _ in range(4)] # LRU keeps track of the LRU of all cachelines
+LRU_STAMP = [-1 for _ in range(4)] # LRU keeps track of the LRU of all cachelines
 LRU_CURRENT = 0  # the current time
 CL = [-1 for _ in range(4)]  # init the value  to -1
 LRU_MAX = float('inf')
 
+import getLRU
 
 def replace_hard(si):  # si is the addr to be accessed
 	set_num = operator.mod(si, num_set)  # the CL set_number this addr belongs to
@@ -32,5 +33,17 @@ def replace_hard(si):  # si is the addr to be accessed
 		base = 8
 	else:  # if it is app1
 		base = 0
-	for i in range(base0 + base, base0 + base + 7):  # 
+	for i in range(base0 + base, base0 + base + 7):  # 不确定
+		if CL[i] == 0:
+			CL[i] = si
+			LRU_STAMP[i] = LRU_CURRENT
+			LRU_CURRENT = LRU_CURRENT + 1
+			return
+	ii = getLRU.getLRU(base0, base)
+	cl(ii) = si
+	LRU_STAMP[ii] = LRU_CURRENT
+	LRU_CURRENT = LRU_CURRENT + 1
+
+
+
 

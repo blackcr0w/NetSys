@@ -7,6 +7,7 @@ set_num = mod(si, num_set);
 base0 = set_num * 16 + 1; % base0 si the starting base of the set
 
 base = -1; % base is decided by which app is running, and used as base in repalacing
+% the accessing pattern ensures A1 will access odd, A2 will access even
 if si > num_app1
     base = 8;
 else
