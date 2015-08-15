@@ -24,9 +24,27 @@ LRU_STAMP = [-1 for x in range(NUM_CL)]
 S1 = [0 for x in range(N)]
 S2 = [0 for x in range(N)]
 
+def rand_init():
+	global NUM_CL, NUM_APP1, ALPHABET1, ALPHABET2, PROB1, PROB2
+	num_app1cl1 = round(NUM_CL * 0.5)
+	num_app1cl2 = round(NUM_CL * 0.5)
+	prob1_factor1 = 0.9 / num_app1cl1
+	prob1_factor2 = 0.1 / num_app1cl2
+	prob11 = ones(1, num_app1cl1); prob11 = prob11 * prob1_factor1;
+	prob12 = ones(1, num_app1cl2); prob12 = prob12 * prob1_factor2;
+	prob1 = [prob11 prob12];
+	
+
+
+def get_rand():
+
+
+
+
+
 def launcer():
 	rand_temp = [-1, -1]
-	rand_gen_init()
+	rand_init()
 	random.seed(10)
 	for i in range(N):
 		rand_temp = get_rand()
