@@ -10,7 +10,7 @@ import random
 CACHE_SIZE = 512  # cache size = 512B;(should be: 2MB)
 CACHELINE_SIZE = 1  # cacheline size = 1B;(64B)
 NUM_CL = CACHE_SIZE / CACHELINE_SIZE  # the number of cacheline
-APP_MEM = 10 * pow(2, 10)  # workingset size of every app = 5KB; (100 * cache_size)
+APP_MEM = 10 * 0.5 * CACHE_SIZE  # workingset size of every app = 5 * CL; (50 * cache_size)
 NUM_MEMACCESS = APP_MEM / CACHELINE_SIZE
 SET_SIZE = 16  # 16-way set-associated, every set has 16 cachelines
 NUM_SET = NUM_CL / SET_SIZE  # number of set
@@ -24,22 +24,34 @@ LRU_STAMP = [-1 for x in range(NUM_CL)]
 S1 = [0 for x in range(N)]
 S2 = [0 for x in range(N)]
 
-def rand_init():
-	global NUM_CL, NUM_APP1, ALPHABET1, ALPHABET2, PROB1, PROB2
-	num_app1cl1 = round(NUM_CL * 0.5)
-	num_app1cl2 = round(NUM_CL * 0.5)
-	prob1_factor1 = 0.9 / num_app1cl1
-	prob1_factor2 = 0.1 / num_app1cl2
-	prob11 = ones(1, num_app1cl1); prob11 = prob11 * prob1_factor1;
-	prob12 = ones(1, num_app1cl2); prob12 = prob12 * prob1_factor2;
-	prob1 = [prob11 prob12];
+# def rand_init():
 	
-# generating random int (0.1cl: p = 0.9, 9.9cl: p = 0.9; 4cl: p = 0.9, 6cl: p = 0.1)
-def get_rand():  
+# 	prob1_factor1 = 0.9 / num_app1cl1
+# 	prob1_factor2 = 0.1 / num_app1cl2
+# 	prob11 = ones(1, num_app1cl1); prob11 = prob11 * prob1_factor1;
+# 	prob12 = ones(1, num_app1cl2); prob12 = prob12 * prob1_factor2;
+# 	prob1 = [prob11 prob12];
 
+# generating random int (0.05cl: p = 0.9, 4.95cl: p = 0.9; 4cl: p = 0.9, 6cl: p = 0.1)
+def get_rand():
+	global APP_MEM
+	num_app1cl1 = round(APP_MEM * 0.5 * 0.1)
+	num_app1cl2 = round(APP_MEM * 0.5 * 9.9) + num_app1cl1
+	num_app2cl1 = round(APP_MEM * 0.5 * 2) + num_app1cl2
+	num_app2cl2 = round(APP_MEM * 0.5 * 8) + num_app2cl1
+	rand_num1 = random.random()
+	rand_num2 = random.random()
+	rand_temp = [-1, -1]
+	if rand_num1 <= 0.9:
+		rand_temp(0) = random.randint(0， num_app1cl1 - 1)
+	else:
+		rand_temp(0) = random.randint(num_app1cl1, num_app1cl2 - 1)
+	if rand_num2 <= 0.9:
+		rand_temp(1) = random.randint(num_app1cl2, num_app2cl1 - 1)
+	else:
+		rand_temp(1) = random.randint(num_app2cl1, num_app2cl2 - 1)
 
-
-
+	return rand_temp
 
 
 def launcer():
