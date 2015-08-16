@@ -7,10 +7,10 @@ __author__ = ' Mingjie Zhao '
 
 import random
 
-CACHE_SIZE = 512  # cache size = 512B;(2MB)
+CACHE_SIZE = 512  # cache size = 512B;(should be: 2MB)
 CACHELINE_SIZE = 1  # cacheline size = 1B;(64B)
 NUM_CL = CACHE_SIZE / CACHELINE_SIZE  # the number of cacheline
-APP_MEM = 5 * pow(2, 10)  # workingset size of every app = 5KB;should be: 100 * cache_size
+APP_MEM = 10 * pow(2, 10)  # workingset size of every app = 5KB; (100 * cache_size)
 NUM_MEMACCESS = APP_MEM / CACHELINE_SIZE
 SET_SIZE = 16  # 16-way set-associated, every set has 16 cachelines
 NUM_SET = NUM_CL / SET_SIZE  # number of set
@@ -34,9 +34,9 @@ def rand_init():
 	prob12 = ones(1, num_app1cl2); prob12 = prob12 * prob1_factor2;
 	prob1 = [prob11 prob12];
 	
+# generating random int (0.1cl: p = 0.9, 9.9cl: p = 0.9; 4cl: p = 0.9, 6cl: p = 0.1)
+def get_rand():  
 
-
-def get_rand():
 
 
 
@@ -44,7 +44,6 @@ def get_rand():
 
 def launcer():
 	rand_temp = [-1, -1]
-	rand_init()
 	random.seed(10)
 	for i in range(N):
 		rand_temp = get_rand()
