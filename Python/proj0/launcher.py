@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-''' this is a launcher of the simulation '''
+''' this is a launcher of the simulation of soft isolation '''
 
 __author__ = ' Mingjie Zhao '
 
 import random
+import helpers
 
 CACHE_SIZE = 512  # cache size = 512B;(should be: 2MB)
 CACHELINE_SIZE = 1  # cacheline size = 1B;(64B)
@@ -53,7 +54,6 @@ def get_rand():
 
 	return rand_temp
 
-
 def launcer():
 	rand_temp = [-1, -1]
 	random.seed(10)
@@ -61,8 +61,8 @@ def launcer():
 		rand_temp = get_rand()
 		S1[i] = rand_temp(0)
 		s2[i] = rand_temp(1)
-		replace_1(S1[i])
-		replace_1(S2[i])
+		helpers.replace_soft(S1[i])
+		helpers.replace_soft(S2[i])
 	hits = [HIT, HIT_APP1, HIT_APP2]
 
 launcher()
