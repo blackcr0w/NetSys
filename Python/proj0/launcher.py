@@ -13,14 +13,14 @@ from math import floor
 
 CACHE_SIZE = 512  # cache size = 512B;(should be: 2MB)
 CACHELINE_SIZE = 1  # cacheline size = 1B;(64B)
-NUM_CL = CACHE_SIZE / CACHELINE_SIZE  # the number of cacheline
+NUM_CL = CACHE_SIZE / CACHELINE_SIZE  # the number of actual cacheline
 APP_MEM = 10 * 0.5 * CACHE_SIZE  # workingset size of every app = 5 * CL; (50 * cache_size)
-NUM_MEMACCESS = APP_MEM / CACHELINE_SIZE
+NUM_MEMACCESS = APP_MEM / CACHELINE_SIZE  # the possible number of cache access one app can
 SET_SIZE = 16  # 16-way set-associated, every set has 16 cachelines
 NUM_SET = NUM_CL / SET_SIZE  # number of set
 N = 20000  # n: each application will access the memory for millions of times;
 HIT  = 0; HIT_APP1 = 0; HIT_APP2 = 0; # hit is total hit_times, hit_app1 is the time app1 hits
-CL = [0 for x in range(NUM_CL)]  # CL stores the data of all cachelines;
+CL = [-1 for x in range(NUM_CL)]  # CL stores the data of all cachelines;
 MAX = 5  # MAX is the isolation algorithm parameter, the surviting time
 X = [MAX for x in range(NUM_CL)]  # x keeps track of the status of all cachelines
 LRU = 1
@@ -38,11 +38,11 @@ S2 = [0 for x in range(N)]
 
 # generating random int (0.05cl: p = 0.9, 4.95cl: p = 0.9; 4cl: p = 0.9, 6cl: p = 0.1)
 def get_rand():
-	global APP_MEM
-	num_app1cl1 = round(APP_MEM * 0.5 * 0.1)
-	num_app1cl2 = round(APP_MEM * 0.5 * 9.9) + num_app1cl1
-	num_app2cl1 = round(APP_MEM * 0.5 * 2) + num_app1cl2
-	num_app2cl2 = round(APP_MEM * 0.5 * 8) + num_app2cl1
+	global NUM_CL
+	num_app1cl1 = round(NUM_CL * 0.5 * 0.1)
+	num_app1cl2 = round(NUM_CL * 0.5 * 9.9) + num_app1cl1
+	num_app2cl1 = round(NUM_CL * 0.5 * 2) + num_app1cl2
+	num_app2cl2 = round(NUM_CL * 0.5 * 8) + num_app2cl1
 	rand_num1 = random.random()
 	rand_num2 = random.random()
 	rand_temp = [-1, -1]
@@ -106,10 +106,8 @@ def replace_soft(si):
 	LRU = LRU + 1
 
 
-
 def replace_hard(si):
-
-
+	return
 
 def launcer():
 	rand_temp = [-1, -1]
@@ -118,8 +116,8 @@ def launcer():
 		rand_temp = get_rand()
 		S1[i] = rand_temp(0)
 		s2[i] = rand_temp(1)
-		helpers.replace_soft(S1[i])
-		helpers.replace_soft(S2[i])
+		replace_soft(S1[i])
+		replace_soft(S2[i])
 	hits = [HIT, HIT_APP1, HIT_APP2]
 
 launcher()
