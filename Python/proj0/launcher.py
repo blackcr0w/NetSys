@@ -6,7 +6,7 @@
 __author__ = ' Mingjie Zhao '
 
 from random import randint, random
-import helpers import *
+import helpers
 from operator import mod
 from getLRU import getLRU
 from math import floor
@@ -46,21 +46,23 @@ def get_rand():
 	rand_num1 = random.random()
 	rand_num2 = random.random()
 	rand_temp = [-1, -1]
+	print(num_app1cl1)
 	if rand_num1 <= 0.9:
-		rand_temp(0) = random.randint(0， num_app1cl1 - 1)
+		# print(num_app1cl1)
+		rand_temp[0] = random.randint(0, num_app1cl1 - 1)
 	else:
-		rand_temp(0) = random.randint(num_app1cl1, num_app1cl2 - 1)
+		rand_temp[0] = random.randint(num_app1cl1, num_app1cl2 - 1)
 	if rand_num2 <= 0.9:
-		rand_temp(1) = random.randint(num_app1cl2, num_app2cl1 - 1)
+		rand_temp[1] = random.randint(num_app1cl2, num_app2cl1 - 1)
 	else:
-		rand_temp(1) = random.randint(num_app2cl1, num_app2cl2 - 1)
+		rand_temp[1] = random.randint(num_app2cl1, num_app2cl2 - 1)
 
 	return rand_temp
 
 def replace_soft(si):
 	# TODO: modify this part, and make the LRU and return a sigle, 
 	# non-repeatingpart of code
-	global CL, NUM_SET
+	global CL, X, NUM_SET, HIT_APP1, HIT_APP2, LRU_STAMP, LRU, MAX
 	set_num = operator.mod(si, NUM_SET)
 	base0 = set_num * 16 + 1
 	if si > num_app1:
@@ -74,35 +76,36 @@ def replace_soft(si):
 			else:
 				HIT_APP1 = HIT_APP1 + 1
 			hit = hit + 1
-			X(i) = MAX
-			LRU_STAMP(i) = LRU
+			X[i] = MAX
+			LRU_STAMP[i] = LRU
 			LRU = LRU + 1
 			return
 	for i in range(base0 + base, base0 + base + 8):
-		if cl(i) == 0:
-			cl(i) = si
-			LRU_STAMP(i) = LRU
+		if CL[i] == 0:
+			CL[i] = si
+			LRU_STAMP[i] = LRU
 			LRU = LRU + 1
-			X(i) = MAX
+			X[i] = MAX
 			return
 	for i in range(base0, base0 + 16):
-		if x(i) == 0:		
-			cnt3(cnt30) = i
-	        cnt30 = cnt30 + 1
-	        cnt1 = cnt1 + 1
-	        cl(i) = si
-	        X(i) = MAX
-	        LRU_STAMP(i) = LRU
-	        LRU = LRU + 1
+		if X[i] == 0:
+			cnt3[cnt30] = i
+			cnt30 = cnt30 + 1
+			cnt1 = cnt1 + 1
+			CL[i] = si
+			X[i] = MAX
+			LRU_STAMP[i] = LRU
+			LRU = LRU + 1
+
 	ii = getLRU(base0, base)
-	CL(ii) = si
-	X(ii) = MAX
+	CL[ii] = si
+	X[ii] = MAX
 
 	for i in range(base0 + base, base0 + base + 8):
 		if i != ii:
-			X(i) = X(i) - 1
-			X(i) = floor(X(i))
-	LRU_STAMP(ii) = LRU
+			X[i] = X[i] - 1
+			X[i] = floor(X[i])
+	LRU_STAMP[ii] = LRU
 	LRU = LRU + 1
 
 
@@ -110,14 +113,17 @@ def replace_hard(si):
 	return
 
 def launcer():
+	global S1, S2, N, HIT, HIT_APP1, HIT_APP2
 	rand_temp = [-1, -1]
 	random.seed(10)
 	for i in range(N):
 		rand_temp = get_rand()
-		S1[i] = rand_temp(0)
-		s2[i] = rand_temp(1)
+		S1[i] = rand_temp[0]
+		s2[i] = rand_temp[1]
 		replace_soft(S1[i])
 		replace_soft(S2[i])
 	hits = [HIT, HIT_APP1, HIT_APP2]
+
+	print(hits)
 
 launcher()
