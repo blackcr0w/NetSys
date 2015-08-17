@@ -56,11 +56,44 @@ def get_rand():
 	return rand_temp
 
 def replace_soft(si):
+	# TODO: modify this part, and make the LRU and return a sigle, 
+	# non-repeatingpart of code
 	global CL, NUM_SET
 	set_num = operator.mod(si, NUM_SET)
 	base0 = set_num * 16 + 1
 	if si > num_app1:
-		
+		base = 8
+	else:
+		base = 0
+	for i in range(base, base + 16):
+		if cl(i) == si:
+			if base == 8:
+				HIT_APP2 = HIT_APP2 + 1
+			else:
+				HIT_APP1 = HIT_APP1 + 1
+			hit = hit + 1
+			X(i) = MAX
+			LRU_STAMP(i) = LRU
+			LRU = LRU + 1
+			return
+	for i in range(base0 + base, base0 + base + 8):
+		if cl(i) == 0:
+			cl(i) = si
+			LRU_STAMP(i) = LRU
+			LRU = LRU + 1
+			X(i) = MAX
+			return
+	for i in range(base0, base0 + 15):
+		if x(i) == 0:		
+			cnt3(cnt30) = i
+	        cnt30 = cnt30 + 1
+	        cnt1 = cnt1 + 1
+	        cl(i) = si
+	        X(i) = MAX
+	        LRU_STAMP(i) = LRU
+	        LRu = lru + 1
+
+
 
 def replace_hard(si):
 
