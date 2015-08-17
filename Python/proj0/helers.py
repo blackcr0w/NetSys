@@ -11,5 +11,5 @@ def replace_soft(si):
 	return
 
 
-def wocao:
+def hello:
 	print('hello')

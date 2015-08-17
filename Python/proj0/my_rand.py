@@ -6,7 +6,7 @@
 __author__ = ' Mingjie Zhao '
 
 import random
-import helpers
+from helpers import hello
 
 CACHE_SIZE = 512  # cache size = 512B;(should be: 2MB)
 CACHELINE_SIZE = 1  # cacheline size = 1B;(64B)
