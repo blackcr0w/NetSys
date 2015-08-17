@@ -5,8 +5,9 @@
 
 __author__ = ' Mingjie Zhao '
 
-import random
-import helpers
+from random import randint, random
+import helpers import *
+from operator import mod
 
 CACHE_SIZE = 512  # cache size = 512B;(should be: 2MB)
 CACHELINE_SIZE = 1  # cacheline size = 1B;(64B)
@@ -53,6 +54,17 @@ def get_rand():
 		rand_temp(1) = random.randint(num_app2cl1, num_app2cl2 - 1)
 
 	return rand_temp
+
+def replace_soft(si):
+	global CL, NUM_SET
+	set_num = operator.mod(si, NUM_SET)
+	base0 = set_num * 16 + 1
+	if si > num_app1:
+		
+
+def replace_hard(si):
+
+
 
 def launcer():
 	rand_temp = [-1, -1]
