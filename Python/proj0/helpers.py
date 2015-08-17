@@ -10,6 +10,5 @@ import random
 def replace_soft(si):
 	return
 
-
-def hello:
+def hello():
 	print('hello')

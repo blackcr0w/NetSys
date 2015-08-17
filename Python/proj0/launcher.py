@@ -8,6 +8,8 @@ __author__ = ' Mingjie Zhao '
 from random import randint, random
 import helpers import *
 from operator import mod
+from getLRU import getLRU
+from math import floor
 
 CACHE_SIZE = 512  # cache size = 512B;(should be: 2MB)
 CACHELINE_SIZE = 1  # cacheline size = 1B;(64B)
@@ -83,7 +85,7 @@ def replace_soft(si):
 			LRU = LRU + 1
 			X(i) = MAX
 			return
-	for i in range(base0, base0 + 15):
+	for i in range(base0, base0 + 16):
 		if x(i) == 0:		
 			cnt3(cnt30) = i
 	        cnt30 = cnt30 + 1
@@ -91,7 +93,17 @@ def replace_soft(si):
 	        cl(i) = si
 	        X(i) = MAX
 	        LRU_STAMP(i) = LRU
-	        LRu = lru + 1
+	        LRU = LRU + 1
+	ii = getLRU(base0, base)
+	CL(ii) = si
+	X(ii) = MAX
+
+	for i in range(base0 + base, base0 + base + 8):
+		if i != ii:
+			X(i) = X(i) - 1
+			X(i) = floor(X(i))
+	LRU_STAMP(ii) = LRU
+	LRU = LRU + 1
 
 
 

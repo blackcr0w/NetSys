@@ -7,7 +7,6 @@ __author__ = ' Mingjie Zhao '
 
 import random
 from helpers import hello
-
 CACHE_SIZE = 512  # cache size = 512B;(should be: 2MB)
 CACHELINE_SIZE = 1  # cacheline size = 1B;(64B)
 NUM_CL = CACHE_SIZE / CACHELINE_SIZE  # the number of cacheline
@@ -33,7 +32,7 @@ def get_rand():
 
 	return rand_temp
 
-helpers.hello()
+hello()
 
 
 
