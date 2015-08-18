@@ -5,15 +5,14 @@
 
 __author__ = ' Mingjie Zhao '
 
-from random import randint, random
+from random import randint, random, seed
 import helpers
 from operator import mod
-from getLRU import getLRU
 from math import floor
 
 CACHE_SIZE = 512  # cache size = 512B;(should be: 2MB)
 CACHELINE_SIZE = 1  # cacheline size = 1B;(64B)
-NUM_CL = CACHE_SIZE / CACHELINE_SIZE  # the number of actual cacheline
+NUM_CL = round(CACHE_SIZE / CACHELINE_SIZE)  # the number of actual cacheline
 APP_MEM = 10 * 0.5 * CACHE_SIZE  # workingset size of every app = 5 * CL; (50 * cache_size)
 NUM_MEMACCESS = APP_MEM / CACHELINE_SIZE  # the possible number of cache access one app can
 SET_SIZE = 16  # 16-way set-associated, every set has 16 cachelines
@@ -38,44 +37,51 @@ S2 = [0 for x in range(N)]
 
 # generating random int (0.05cl: p = 0.9, 4.95cl: p = 0.9; 4cl: p = 0.9, 6cl: p = 0.1)
 def get_rand():
-	global NUM_CL
+	global NUM_CL, num_app1cl2
 	num_app1cl1 = round(NUM_CL * 0.5 * 0.1)
 	num_app1cl2 = round(NUM_CL * 0.5 * 9.9) + num_app1cl1
 	num_app2cl1 = round(NUM_CL * 0.5 * 2) + num_app1cl2
 	num_app2cl2 = round(NUM_CL * 0.5 * 8) + num_app2cl1
-	rand_num1 = random.random()
-	rand_num2 = random.random()
+	rand_num1 = random()
+	rand_num2 = random()
 	rand_temp = [-1, -1]
-	print(num_app1cl1)
 	if rand_num1 <= 0.9:
 		# print(num_app1cl1)
-		rand_temp[0] = random.randint(0, num_app1cl1 - 1)
+		rand_temp[0] = randint(0, num_app1cl1 - 1)
 	else:
-		rand_temp[0] = random.randint(num_app1cl1, num_app1cl2 - 1)
+		rand_temp[0] = randint(num_app1cl1, num_app1cl2 - 1)
 	if rand_num2 <= 0.9:
-		rand_temp[1] = random.randint(num_app1cl2, num_app2cl1 - 1)
+		rand_temp[1] = randint(num_app1cl2, num_app2cl1 - 1)
 	else:
-		rand_temp[1] = random.randint(num_app2cl1, num_app2cl2 - 1)
+		rand_temp[1] = randint(num_app2cl1, num_app2cl2 - 1)
 
 	return rand_temp
+
+def getLRU(base, base0):
+	global LRU_STAMP, LRU
+	lru_ = float('inf')
+	for i in range(base0 + base, base0 +  base + 8):
+		if LRU_STAMP[i] < lru_:
+			lru_ = LRU_STAMP[i]
+	return lru_
 
 def replace_soft(si):
 	# TODO: modify this part, and make the LRU and return a sigle, 
 	# non-repeatingpart of code
 	global CL, X, NUM_SET, HIT_APP1, HIT_APP2, LRU_STAMP, LRU, MAX
-	set_num = operator.mod(si, NUM_SET)
-	base0 = set_num * 16 + 1
-	if si > num_app1:
+	set_num = mod(si, NUM_SET)
+	base0 = round(set_num * 16)
+	if si > num_app1cl2:
 		base = 8
 	else:
 		base = 0
 	for i in range(base, base + 16):
-		if cl(i) == si:
+		if CL[i] == si:
 			if base == 8:
 				HIT_APP2 = HIT_APP2 + 1
 			else:
 				HIT_APP1 = HIT_APP1 + 1
-			hit = hit + 1
+			HIT = HIT + 1
 			X[i] = MAX
 			LRU_STAMP[i] = LRU
 			LRU = LRU + 1
@@ -89,9 +95,9 @@ def replace_soft(si):
 			return
 	for i in range(base0, base0 + 16):
 		if X[i] == 0:
-			cnt3[cnt30] = i
-			cnt30 = cnt30 + 1
-			cnt1 = cnt1 + 1
+			# cnt3[cnt30] = i
+			# cnt30 = cnt30 + 1
+			# cnt1 = cnt1 + 1
 			CL[i] = si
 			X[i] = MAX
 			LRU_STAMP[i] = LRU
@@ -112,18 +118,20 @@ def replace_soft(si):
 def replace_hard(si):
 	return
 
-def launcer():
+def launcher():
 	global S1, S2, N, HIT, HIT_APP1, HIT_APP2
 	rand_temp = [-1, -1]
-	random.seed(10)
+	seed(10)
 	for i in range(N):
 		rand_temp = get_rand()
 		S1[i] = rand_temp[0]
-		s2[i] = rand_temp[1]
+		S2[i] = rand_temp[1]
 		replace_soft(S1[i])
 		replace_soft(S2[i])
 	hits = [HIT, HIT_APP1, HIT_APP2]
 
 	print(hits)
 
-launcher()
+
+if __name__=='__main__':
+    launcher()
