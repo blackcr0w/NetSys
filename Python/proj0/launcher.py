@@ -17,9 +17,9 @@ APP_MEM = 10 * 0.5 * CACHE_SIZE  # workingset size of every app = 5 * CL; (50 * 
 NUM_MEMACCESS = APP_MEM / CACHELINE_SIZE  # the possible number of cache access one app can
 SET_SIZE = 16  # 16-way set-associated, every set has 16 cachelines
 NUM_SET = NUM_CL / SET_SIZE  # number of set
-N = 20000  # n: each application will access the memory for millions of times;
+N = 2000000  # n: each application will access the memory for millions of times;
 HIT  = 0; HIT_APP1 = 0; HIT_APP2 = 0; # hit is total hit_times, hit_app1 is the time app1 hits
-CL = [-1 for x in range(NUM_CL)]  # CL stores the data of all cachelines;
+CL = [0 for x in range(NUM_CL)]  # CL stores the data of all cachelines;
 MAX = 5  # MAX is the isolation algorithm parameter, the surviting time
 X = [MAX for x in range(NUM_CL)]  # x keeps track of the status of all cachelines
 LRU = 1
@@ -61,14 +61,15 @@ def getLRU(base, base0):
 	global LRU_STAMP, LRU
 	lru_ = float('inf')
 	for i in range(base0 + base, base0 +  base + 8):
-		if LRU_STAMP[i] < lru_:
+		if  LRU_STAMP[i] < lru_:
 			lru_ = LRU_STAMP[i]
-	return lru_
+			_lru = i
+	return _lru
 
 def replace_soft(si):
 	# TODO: modify this part, and make the LRU and return a sigle, 
 	# non-repeatingpart of code
-	global CL, X, NUM_SET, HIT_APP1, HIT_APP2, LRU_STAMP, LRU, MAX
+	global CL, X, NUM_SET, HIT, HIT_APP1, HIT_APP2, LRU_STAMP, LRU, MAX
 	set_num = mod(si, NUM_SET)
 	base0 = round(set_num * 16)
 	if si > num_app1cl2:
@@ -104,6 +105,9 @@ def replace_soft(si):
 			LRU = LRU + 1
 
 	ii = getLRU(base0, base)
+	# print(base, ' ', base0)
+	# print(ii)
+
 	CL[ii] = si
 	X[ii] = MAX
 

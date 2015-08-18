@@ -12,7 +12,8 @@ def getLRU(base, base0):
 	for i in range(base0 + base, base0 +  base + 8):
 		if LRU_STAMP[i] < lru_min_replace:
 			lru_min_replace = LRU_STAMP[i]
-	return lru_min_replace
+			lru_ = i
+	return lru_
 
 	# min_lru = LRU_MAX
 	# min_lru_place = -1
