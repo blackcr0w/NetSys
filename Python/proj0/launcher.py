@@ -5,8 +5,14 @@
 
 __author__ = ' Mingjie Zhao '
 
+# TODO: 
+# 1. Transform everything to OOP
+# 2. Use the logging to debug
+# 3. seperate it in different files, call functions and variables in diff files
+# 4. Use PyPlot to draw
+
 from random import randint, random, seed
-import helpers
+# import helpers
 from operator import mod
 from math import floor
 
@@ -17,7 +23,7 @@ APP_MEM = 10 * 0.5 * CACHE_SIZE  # workingset size of every app = 5 * CL; (50 * 
 NUM_MEMACCESS = APP_MEM / CACHELINE_SIZE  # the possible number of cache access one app can
 SET_SIZE = 16  # 16-way set-associated, every set has 16 cachelines
 NUM_SET = NUM_CL / SET_SIZE  # number of set
-N = 2000000  # n: each application will access the memory for millions of times;
+N = 10  # n: each application will access the memory for millions of times;
 HIT  = 0; HIT_APP1 = 0; HIT_APP2 = 0; # hit is total hit_times, hit_app1 is the time app1 hits
 CL = [0 for x in range(NUM_CL)]  # CL stores the data of all cachelines;
 MAX = 5  # MAX is the isolation algorithm parameter, the surviting time
@@ -69,10 +75,11 @@ def getLRU(base, base0):
 def replace_soft(si):
 	# TODO: modify this part, and make the LRU and return a sigle, 
 	# non-repeatingpart of code
-	global CL, X, NUM_SET, HIT, HIT_APP1, HIT_APP2, LRU_STAMP, LRU, MAX
+	global CL, X, NUM_SET, HIT, HIT_APP1, HIT_APP2, LRU_STAMP, LRU, MAX, num_app1cl2
 	set_num = mod(si, NUM_SET)
 	base0 = round(set_num * 16)
-	if si > num_app1cl2:
+	print(num_app1cl2)
+	if si >= num_app1cl2:  # not sure
 		base = 8
 	else:
 		base = 0
@@ -119,6 +126,7 @@ def replace_soft(si):
 	LRU = LRU + 1
 
 
+
 def replace_hard(si):
 	return
 
@@ -135,6 +143,10 @@ def launcher():
 	hits = [HIT, HIT_APP1, HIT_APP2]
 
 	print(hits)
+	print(S1)
+	print(S2)
+	print(CL)
+	print(CL.index(2575))
 
 
 if __name__=='__main__':
