@@ -25,7 +25,7 @@ SET_SIZE = 16  # 16-way set-associated, every set has 16 cachelines
 NUM_SET = NUM_CL / SET_SIZE  # number of set
 N = 10  # n: each application will access the memory for millions of times;
 HIT  = 0; HIT_APP1 = 0; HIT_APP2 = 0; # hit is total hit_times, hit_app1 is the time app1 hits
-CL = [0 for x in range(NUM_CL)]  # CL stores the data of all cachelines;
+CL = [0 for x in range(NUM_CL)]  # CL stores the data of all cachelines; CL[i] = 0 means empty cacheline
 MAX = 5  # MAX is the isolation algorithm parameter, the surviting time
 X = [MAX for x in range(NUM_CL)]  # x keeps track of the status of all cachelines
 LRU = 1
@@ -78,22 +78,28 @@ def replace_soft(si):
 	global CL, X, NUM_SET, HIT, HIT_APP1, HIT_APP2, LRU_STAMP, LRU, MAX, num_app1cl2
 	set_num = mod(si, NUM_SET)
 	base0 = round(set_num * 16)
-	print(num_app1cl2)
 	if si >= num_app1cl2:  # not sure
 		base = 8
 	else:
 		base = 0
-	for i in range(base, base + 16):
+
+	# when hit happens: check the whole set to see if hit.
+	for i in range(base0, base0 + 16):
 		if CL[i] == si:
+
 			if base == 8:
 				HIT_APP2 = HIT_APP2 + 1
 			else:
 				HIT_APP1 = HIT_APP1 + 1
+
 			HIT = HIT + 1
 			X[i] = MAX
 			LRU_STAMP[i] = LRU
 			LRU = LRU + 1
 			return
+
+	# when miss happens and empty cache line exists:
+	# only check half of the whole set which belongs to current app
 	for i in range(base0 + base, base0 + base + 8):
 		if CL[i] == 0:
 			CL[i] = si
@@ -101,6 +107,8 @@ def replace_soft(si):
 			LRU = LRU + 1
 			X[i] = MAX
 			return
+	# when miss happens and there is soft-isolatable cacheline:
+	# check the whole set to see
 	for i in range(base0, base0 + 16):
 		if X[i] == 0:
 			# cnt3[cnt30] = i
@@ -111,21 +119,30 @@ def replace_soft(si):
 			LRU_STAMP[i] = LRU
 			LRU = LRU + 1
 
+	# when miss happens: using LRU and hard-isolation
+	# check half of the set
 	ii = getLRU(base0, base)
 	# print(base, ' ', base0)
 	# print(ii)
-
 	CL[ii] = si
 	X[ii] = MAX
 
+	# for the half of set belongs to the current app:
+	# using linear Dying Algorithm to shorten their lives
 	for i in range(base0 + base, base0 + base + 8):
 		if i != ii:
 			X[i] = X[i] - 1
 			X[i] = floor(X[i])
+
+	# for the half of set belongs to the other app:
+	# using multiply-Dying Algorithm to shorten their lives
+	seg_num = 8 - base
+	for i in range(base0 + seg_num, base0 + seg_num + 8):
+		X[i] = X[i] * 0.5
+		X[i] = floor(X[i])
+
 	LRU_STAMP[ii] = LRU
 	LRU = LRU + 1
-
-
 
 def replace_hard(si):
 	return
