@@ -83,22 +83,23 @@ def replace_soft(si):
 	# non-repeatingpart of code
 	global CL, X, NUM_SET, HIT1, HIT_APP1, HIT_APP2, LRU_STAMP, LRU, MAX, num_app1cl2
 	set_num = mod(si, NUM_SET)
-	base0 = round(set_num * 16)
+	base0 = round(set_num * 16)  # base0 is the starting point within cacheline set
 	if si >= num_app1cl2:  # not sure
 		base = 8
 	else:
 		base = 0
-
+	base0 = round(base0)
+	base = round(base)
+	
 	# when hit happens: check the whole set to see if hit.
 	for i in range(base0, base0 + 16):
 		if CL[i] == si:
 			#** print('hit ', i, ' ', si)
+			HIT1 = HIT1 + 1
 			if base == 8:
 				HIT_APP2 = HIT_APP2 + 1
 			else:
-				HIT_APP1 = HIT_APP1 + 1
-
-			HIT1 = HIT1 + 1
+				HIT_APP1 = HIT_APP1 + 1			
 			X[i] = MAX
 			lru_update(i)
 			return
@@ -122,12 +123,11 @@ def replace_soft(si):
 			CL[i] = si
 			X[i] = MAX
 			lru_update(i)
+			return
 
 	# when miss happens: using LRU and hard-isolation
 	# check half of the set
 	ii = getLRU(base0, base)
-	# print(base, ' ', base0)
-	# print(ii)
 	CL[ii] = si
 	X[ii] = MAX
 	lru_update(ii)
