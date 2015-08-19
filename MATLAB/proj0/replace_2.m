@@ -10,7 +10,7 @@ base = -1; % base is decided by which app is running, and used as base in repala
 % the accessing pattern ensures A1 will access odd, A2 will access even
 if si > num_app1
     base = 8;
-else
+els
     base = 0;
 end
 % when hit happens?
@@ -71,7 +71,3 @@ lru = lru + 1;
 
 
 
-    
-    
-
-            

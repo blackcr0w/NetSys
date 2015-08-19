@@ -24,7 +24,7 @@ NUM_MEMACCESS = APP_MEM / CACHELINE_SIZE  # the possible number of cache access 
 SET_SIZE = 16  # 16-way set-associated, every set has 16 cachelines
 NUM_SET = NUM_CL / SET_SIZE  # number of set
 N = 40000  # n: each application will access the memory for millions of times;
-HIT  = 0; HIT_APP1 = 0; HIT_APP2 = 0; # hit is total hit_times, hit_app1 is the time app1 hits
+HIT1  = 0; HIT2 = 0; HIT_APP1 = 0; HIT_APP2 = 0; # hit is total hit_times, hit_app1 is the time app1 hits
 CL = [-1 for x in range(NUM_CL)]  # CL stores the data of all cachelines; 
 # CL[i] = -1 means empty cacheline
 MAX = 5  # MAX is the isolation algorithm parameter, the surviting time
@@ -95,8 +95,7 @@ def replace_soft(si):
 
 			HIT = HIT + 1
 			X[i] = MAX
-			LRU_STAMP[i] = LRU
-			LRU = LRU + 1
+			lru_update()
 			return
 
 	# when miss happens and empty cache line exists:
@@ -104,8 +103,7 @@ def replace_soft(si):
 	for i in range(base0 + base, base0 + base + 8):
 		if CL[i] == -1:
 			CL[i] = si
-			LRU_STAMP[i] = LRU
-			LRU = LRU + 1
+			lru_update()
 			X[i] = MAX
 			return
 	# when miss happens and there is soft-isolatable cacheline:
@@ -118,8 +116,7 @@ def replace_soft(si):
 			# cnt1 = cnt1 + 1
 			CL[i] = si
 			X[i] = MAX
-			LRU_STAMP[i] = LRU
-			LRU = LRU + 1
+			lru_update
 
 	# when miss happens: using LRU and hard-isolation
 	# check half of the set
@@ -143,11 +140,49 @@ def replace_soft(si):
 		X[i] = X[i] * 0.5
 		X[i] = floor(X[i])
 
-	LRU_STAMP[ii] = LRU
-	LRU = LRU + 1
+	lru_update()
 
 def replace_hard(si):
-	return
+	global NUM_SET, num_app1cl2, HIT2, HIT_APP1, HIT_APP2, CL
+	set_num = mod(si, NUM_SET)
+	base0 = set_num * 16  # base0 is the starting point of the base
+	base = -1  # base is the offset of different apps
+	if si >= num_app1cl2:
+		base = 8
+	else:
+		base = 0
+	base0 = round(base0)
+	base = round(base)
+
+	# when hit happens
+	for i in range(base0 + base, base0 + base + 8):
+		if CL[i] == si:
+			HIT2 = HIT2 + 1
+			if base == 8:
+				HIT_APP2 = HIT_APP2 + 1
+			else:
+				HIT_APP1 = HIT_APP1 + 1
+			lru_update()
+			return
+
+	# when miss happens and there exists empty cacheline
+	for i in range(base0 + base, base0 + base + 8):
+		if CL[i] == -1:
+			CL[i] = si
+			lru_update()
+			return
+
+	# if there is no more room, using LRU
+	ii = getLRU(base0, base)
+	CL[ii] = si
+	lru_update()
+
+
+def lru_update():
+	global LRU, LRU_STAMP
+	LRU_STAMP = LRU
+	LRU = LRU + 1
+
 
 def launcher():
 	global S1, S2, N, HIT, HIT_APP1, HIT_APP2
@@ -157,8 +192,8 @@ def launcher():
 		rand_temp = get_rand()
 		S1[i] = rand_temp[0]
 		S2[i] = rand_temp[1]
-		replace_soft(S1[i])
-		replace_soft(S2[i])
+		replace_hard(S1[i])
+		replace_hard(S2[i])
 	hits = [HIT, HIT_APP1, HIT_APP2]
 
 	print(hits)
