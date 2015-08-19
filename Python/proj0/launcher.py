@@ -10,10 +10,13 @@ __author__ = ' Mingjie Zhao '
 # 2. Use the logging to debug
 # 3. seperate it in different files, call functions and variables in diff files
 # 4. Use PyPlot to draw
-# 5. how to cleare the frame??
+
+# Question:
+# 1. how to cleare the frame??
+# 2. only update the status when miss + no soft-isolation happen?
+# 3. Amin's presentation
 
 from random import randint, random, seed
-# import helpers
 from operator import mod
 from math import floor
 
@@ -24,7 +27,7 @@ APP_MEM = 5 * 0.5 * CACHE_SIZE  # workingset size of every app = 5 * CL; (50 * c
 NUM_MEMACCESS = APP_MEM / CACHELINE_SIZE  # the possible number of cache access one app can
 SET_SIZE = 16  # 16-way set-associated, every set has 16 cachelines
 NUM_SET = NUM_CL / SET_SIZE  # number of set
-N = 1  # n: each application will access the memory for millions of times;
+N = 200000  # n: each application will access the memory for millions of times;
 HIT1 = 0; HIT2 = 0; HIT_APP1 = 0; HIT_APP2 = 0; # hit is total hit_times, hit_app1 is the time app1 hits
 CL = [-1 for x in range(NUM_CL)]  # CL stores the data of all cachelines; 
 # CL[i] = -1 means empty cacheline
@@ -50,9 +53,9 @@ def get_rand():
 	num_app1cl2 = round(NUM_MEMACCESS * 0.99) + num_app1cl1
 	num_app2cl1 = round(NUM_MEMACCESS * 0.4) + num_app1cl2
 	num_app2cl2 = round(NUM_MEMACCESS * 0.6) + num_app2cl1
-	print('this is num_app1cl1 ', num_app1cl1)
-	print('this is num_app1cl2 ', num_app1cl2)
-	print('this is num_app2cl1 ', num_app2cl1)
+	# print('this is num_app1cl1 ', num_app1cl1)
+	# print('this is num_app1cl2 ', num_app1cl2)
+	# print('this is num_app2cl1 ', num_app2cl1)
 
 	rand_num1 = random()
 	rand_num2 = random()
@@ -69,6 +72,7 @@ def get_rand():
 
 	return rand_temp
 
+# get the number of the least recently used cacheline
 def getLRU(base, base0):
 	global LRU_STAMP, LRU
 	lru_ = float('inf')

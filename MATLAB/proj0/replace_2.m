@@ -28,7 +28,7 @@ for i = base0 + base : base0 + base + 7
     end
 end
 
-% when miss happens and empty cachelien exists:
+% when miss happens and empty cacheline exists:
 for i = base0 + base : base0 + base + 7
     if cl(i) == 0
         cl(i) = si;
