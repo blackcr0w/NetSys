@@ -23,9 +23,10 @@ APP_MEM = 10 * 0.5 * CACHE_SIZE  # workingset size of every app = 5 * CL; (50 * 
 NUM_MEMACCESS = APP_MEM / CACHELINE_SIZE  # the possible number of cache access one app can
 SET_SIZE = 16  # 16-way set-associated, every set has 16 cachelines
 NUM_SET = NUM_CL / SET_SIZE  # number of set
-N = 20000  # n: each application will access the memory for millions of times;
+N = 40000  # n: each application will access the memory for millions of times;
 HIT  = 0; HIT_APP1 = 0; HIT_APP2 = 0; # hit is total hit_times, hit_app1 is the time app1 hits
-CL = [0 for x in range(NUM_CL)]  # CL stores the data of all cachelines; CL[i] = 0 means empty cacheline
+CL = [-1 for x in range(NUM_CL)]  # CL stores the data of all cachelines; 
+# CL[i] = -1 means empty cacheline
 MAX = 5  # MAX is the isolation algorithm parameter, the surviting time
 X = [MAX for x in range(NUM_CL)]  # x keeps track of the status of all cachelines
 LRU = 1
@@ -86,7 +87,7 @@ def replace_soft(si):
 	# when hit happens: check the whole set to see if hit.
 	for i in range(base0, base0 + 16):
 		if CL[i] == si:
-
+			#** print('hit ', i, ' ', si)
 			if base == 8:
 				HIT_APP2 = HIT_APP2 + 1
 			else:
@@ -101,7 +102,7 @@ def replace_soft(si):
 	# when miss happens and empty cache line exists:
 	# only check half of the whole set which belongs to current app
 	for i in range(base0 + base, base0 + base + 8):
-		if CL[i] == 0:
+		if CL[i] == -1:
 			CL[i] = si
 			LRU_STAMP[i] = LRU
 			LRU = LRU + 1
@@ -111,6 +112,7 @@ def replace_soft(si):
 	# check the whole set to see
 	for i in range(base0, base0 + 16):
 		if X[i] == 0:
+			#**print('soft-siolation: ' + i)
 			# cnt3[cnt30] = i
 			# cnt30 = cnt30 + 1
 			# cnt1 = cnt1 + 1
@@ -162,8 +164,7 @@ def launcher():
 	print(hits)
 	# print(S1)
 	# print(S2)
-	# print(CL)
-	# print(CL.index(10))
+	print(CL)
 
 
 if __name__=='__main__':
