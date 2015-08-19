@@ -95,7 +95,7 @@ def replace_soft(si):
 
 			HIT = HIT + 1
 			X[i] = MAX
-			lru_update()
+			lru_update(i)
 			return
 
 	# when miss happens and empty cache line exists:
@@ -103,7 +103,7 @@ def replace_soft(si):
 	for i in range(base0 + base, base0 + base + 8):
 		if CL[i] == -1:
 			CL[i] = si
-			lru_update()
+			lru_update(i)
 			X[i] = MAX
 			return
 	# when miss happens and there is soft-isolatable cacheline:
@@ -116,7 +116,7 @@ def replace_soft(si):
 			# cnt1 = cnt1 + 1
 			CL[i] = si
 			X[i] = MAX
-			lru_update
+			lru_update(i)
 
 	# when miss happens: using LRU and hard-isolation
 	# check half of the set
@@ -125,7 +125,7 @@ def replace_soft(si):
 	# print(ii)
 	CL[ii] = si
 	X[ii] = MAX
-
+	lru_update(ii)
 	# for the half of set belongs to the current app:
 	# using linear Dying Algorithm to shorten their lives
 	for i in range(base0 + base, base0 + base + 8):
@@ -140,8 +140,7 @@ def replace_soft(si):
 		X[i] = X[i] * 0.5
 		X[i] = floor(X[i])
 
-	lru_update()
-
+	
 def replace_hard(si):
 	global NUM_SET, num_app1cl2, HIT2, HIT_APP1, HIT_APP2, CL
 	set_num = mod(si, NUM_SET)
@@ -162,25 +161,25 @@ def replace_hard(si):
 				HIT_APP2 = HIT_APP2 + 1
 			else:
 				HIT_APP1 = HIT_APP1 + 1
-			lru_update()
+			lru_update(i)
 			return
 
 	# when miss happens and there exists empty cacheline
 	for i in range(base0 + base, base0 + base + 8):
 		if CL[i] == -1:
 			CL[i] = si
-			lru_update()
+			lru_update(i)
 			return
 
 	# if there is no more room, using LRU
 	ii = getLRU(base0, base)
 	CL[ii] = si
-	lru_update()
+	lru_update(ii)
 
 
-def lru_update():
+def lru_update(ii):
 	global LRU, LRU_STAMP
-	LRU_STAMP = LRU
+	LRU_STAMP[ii] = LRU
 	LRU = LRU + 1
 
 
@@ -194,7 +193,7 @@ def launcher():
 		S2[i] = rand_temp[1]
 		replace_hard(S1[i])
 		replace_hard(S2[i])
-	hits = [HIT, HIT_APP1, HIT_APP2]
+	hits = [HIT2, HIT_APP1, HIT_APP2]
 
 	print(hits)
 	# print(S1)
