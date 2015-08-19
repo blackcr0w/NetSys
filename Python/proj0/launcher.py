@@ -23,16 +23,16 @@ APP_MEM = 10 * 0.5 * CACHE_SIZE  # workingset size of every app = 5 * CL; (50 * 
 NUM_MEMACCESS = APP_MEM / CACHELINE_SIZE  # the possible number of cache access one app can
 SET_SIZE = 16  # 16-way set-associated, every set has 16 cachelines
 NUM_SET = NUM_CL / SET_SIZE  # number of set
-N = 40000  # n: each application will access the memory for millions of times;
-HIT1  = 0; HIT2 = 0; HIT_APP1 = 0; HIT_APP2 = 0; # hit is total hit_times, hit_app1 is the time app1 hits
+N = 20  # n: each application will access the memory for millions of times;
+HIT1 = 0; HIT2 = 0; HIT_APP1 = 0; HIT_APP2 = 0; # hit is total hit_times, hit_app1 is the time app1 hits
 CL = [-1 for x in range(NUM_CL)]  # CL stores the data of all cachelines; 
 # CL[i] = -1 means empty cacheline
 MAX = 5  # MAX is the isolation algorithm parameter, the surviting time
 X = [MAX for x in range(NUM_CL)]  # x keeps track of the status of all cachelines
 LRU = 1
 LRU_STAMP = [-1 for x in range(NUM_CL)]
-S1 = [0 for x in range(N)]
-S2 = [0 for x in range(N)]
+S1 = [0 for x in range(N)]  # S1 is the memory accessing addresses of app1
+S2 = [0 for x in range(N)]  # S2 is the memory accessing addresses of app2
 
 # def rand_init():
 	
@@ -76,7 +76,7 @@ def getLRU(base, base0):
 def replace_soft(si):
 	# TODO: modify this part, and make the LRU and return a sigle, 
 	# non-repeatingpart of code
-	global CL, X, NUM_SET, HIT, HIT_APP1, HIT_APP2, LRU_STAMP, LRU, MAX, num_app1cl2
+	global CL, X, NUM_SET, HIT1, HIT_APP1, HIT_APP2, LRU_STAMP, LRU, MAX, num_app1cl2
 	set_num = mod(si, NUM_SET)
 	base0 = round(set_num * 16)
 	if si >= num_app1cl2:  # not sure
@@ -93,7 +93,7 @@ def replace_soft(si):
 			else:
 				HIT_APP1 = HIT_APP1 + 1
 
-			HIT = HIT + 1
+			HIT1 = HIT1 + 1
 			X[i] = MAX
 			lru_update(i)
 			return
@@ -183,23 +183,41 @@ def lru_update(ii):
 	LRU = LRU + 1
 
 
-def launcher():
-	global S1, S2, N, HIT, HIT_APP1, HIT_APP2
+def launcher_soft():
+	global S1, S2, N, HIT1, HIT_APP1, HIT_APP2
 	rand_temp = [-1, -1]
 	seed(10)
 	for i in range(N):
 		rand_temp = get_rand()
 		S1[i] = rand_temp[0]
 		S2[i] = rand_temp[1]
-		replace_hard(S1[i])
-		replace_hard(S2[i])
-	hits = [HIT2, HIT_APP1, HIT_APP2]
+		replace_soft(S1[i])
+		replace_soft(S2[i])
+	hits = [HIT1, HIT_APP1, HIT_APP2]
 
 	print(hits)
 	# print(S1)
 	# print(S2)
 	print(CL)
 
+def launcher_hard():
+	global S1, S2, N, HIT2, HIT_APP1, HIT_APP2
+	rand_temp = [-1, -1]
+	seed(10)
+	for i in range(N):
+		rand_temp = get_rand()
+		S1[i] = rand_tmep[0]
+		S2[i] = rand_temp[1]
+		replace_hard(S1[i])
+		replace_hard(S2[i])
+	hits = [HIT2, HIT_APP1, HIT_APP2]
+	print(hits)
+	print(CL)
 
 if __name__=='__main__':
-    launcher()
+    launcher_soft()
+    launcher_hard()
+
+
+
+
