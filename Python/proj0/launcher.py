@@ -10,6 +10,7 @@ __author__ = ' Mingjie Zhao '
 # 2. Use the logging to debug
 # 3. seperate it in different files, call functions and variables in diff files
 # 4. Use PyPlot to draw
+# 5. how to cleare the frame??
 
 from random import randint, random, seed
 # import helpers
@@ -19,11 +20,11 @@ from math import floor
 CACHE_SIZE = 512  # cache size = 512B;(should be: 2MB)
 CACHELINE_SIZE = 1  # cacheline size = 1B;(64B)
 NUM_CL = round(CACHE_SIZE / CACHELINE_SIZE)  # the number of actual cacheline
-APP_MEM = 10 * 0.5 * CACHE_SIZE  # workingset size of every app = 5 * CL; (50 * cache_size)
+APP_MEM = 5 * 0.5 * CACHE_SIZE  # workingset size of every app = 5 * CL; (50 * cache_size)
 NUM_MEMACCESS = APP_MEM / CACHELINE_SIZE  # the possible number of cache access one app can
 SET_SIZE = 16  # 16-way set-associated, every set has 16 cachelines
 NUM_SET = NUM_CL / SET_SIZE  # number of set
-N = 20  # n: each application will access the memory for millions of times;
+N = 1  # n: each application will access the memory for millions of times;
 HIT1 = 0; HIT2 = 0; HIT_APP1 = 0; HIT_APP2 = 0; # hit is total hit_times, hit_app1 is the time app1 hits
 CL = [-1 for x in range(NUM_CL)]  # CL stores the data of all cachelines; 
 # CL[i] = -1 means empty cacheline
@@ -45,19 +46,23 @@ S2 = [0 for x in range(N)]  # S2 is the memory accessing addresses of app2
 # generating random int (0.05cl: p = 0.9, 4.95cl: p = 0.9; 4cl: p = 0.9, 6cl: p = 0.1)
 def get_rand():
 	global NUM_CL, num_app1cl2
-	num_app1cl1 = round(NUM_CL * 0.5 * 0.1)
-	num_app1cl2 = round(NUM_CL * 0.5 * 9.9) + num_app1cl1
-	num_app2cl1 = round(NUM_CL * 0.5 * 2) + num_app1cl2
-	num_app2cl2 = round(NUM_CL * 0.5 * 8) + num_app2cl1
+	num_app1cl1 = round(NUM_MEMACCESS * 0.01)
+	num_app1cl2 = round(NUM_MEMACCESS * 0.99) + num_app1cl1
+	num_app2cl1 = round(NUM_MEMACCESS * 0.4) + num_app1cl2
+	num_app2cl2 = round(NUM_MEMACCESS * 0.6) + num_app2cl1
+	print('this is num_app1cl1 ', num_app1cl1)
+	print('this is num_app1cl2 ', num_app1cl2)
+	print('this is num_app2cl1 ', num_app2cl1)
+
 	rand_num1 = random()
 	rand_num2 = random()
 	rand_temp = [-1, -1]
-	if rand_num1 <= 0.9:
+	if rand_num1 < 0.9:
 		# print(num_app1cl1)
 		rand_temp[0] = randint(0, num_app1cl1 - 1)
 	else:
 		rand_temp[0] = randint(num_app1cl1, num_app1cl2 - 1)
-	if rand_num2 <= 0.9:
+	if rand_num2 < 0.9:
 		rand_temp[1] = randint(num_app1cl2, num_app2cl1 - 1)
 	else:
 		rand_temp[1] = randint(num_app2cl1, num_app2cl2 - 1)
@@ -186,7 +191,7 @@ def lru_update(ii):
 def launcher_soft():
 	global S1, S2, N, HIT1, HIT_APP1, HIT_APP2
 	rand_temp = [-1, -1]
-	seed(10)
+	seed(5)
 	for i in range(N):
 		rand_temp = get_rand()
 		S1[i] = rand_temp[0]
@@ -198,26 +203,21 @@ def launcher_soft():
 	print(hits)
 	# print(S1)
 	# print(S2)
-	print(CL)
+	# print(CL)
 
 def launcher_hard():
 	global S1, S2, N, HIT2, HIT_APP1, HIT_APP2
 	rand_temp = [-1, -1]
-	seed(10)
+	seed(5)
 	for i in range(N):
 		rand_temp = get_rand()
-		S1[i] = rand_tmep[0]
+		S1[i] = rand_temp[0]
 		S2[i] = rand_temp[1]
 		replace_hard(S1[i])
 		replace_hard(S2[i])
 	hits = [HIT2, HIT_APP1, HIT_APP2]
 	print(hits)
-	print(CL)
-
-if __name__=='__main__':
-    launcher_soft()
-    launcher_hard()
-
-
-
+	# print(S1)
+	# print(S2)
+	# print(CL)
 
